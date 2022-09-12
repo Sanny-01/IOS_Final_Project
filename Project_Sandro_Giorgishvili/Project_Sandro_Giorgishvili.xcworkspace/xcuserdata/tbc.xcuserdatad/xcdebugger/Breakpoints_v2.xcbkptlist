@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "6888C068-5256-4EE8-96E7-7FF6033E6AB8"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "6C7F9A7F-CFCB-4984-B568-B48AC0FAC69B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2AF38D17-54A3-4951-B7A9-5289B3925173"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/VIewControllers/SignUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "validateFileds()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "614EDF45-BE42-46CD-9281-D22298E95107"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/VIewControllers/SignUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "checkIfPasswordsMatch(password:repeatPassword:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AC9F3B26-AA6A-4C69-8EA0-0E16B5A06BAE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/VIewControllers/SignUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "signUpTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AF4A33D6-866F-4A34-9625-70E59B5DDB1B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/VIewControllers/HomePageVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "viewWillDisappear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1D457E39-2E60-49DA-A6C1-0FCA51EF081E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetworkWorker.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "NetworkService"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "67D36A03-8D30-4C5C-AF67-935D33FDD084"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetworkWorker.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "NetworkService"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D69611D4-6FD6-4554-BE3B-4A8444ADA1D1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetworkWorker.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "NetworkService"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "D69611D4-6FD6-4554-BE3B-4A8444ADA1D1 - 9e5f5c4a46e28178"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Project_Sandro_Giorgishvili.NetworkService.convertCurrency&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(to: Swift.String, from: Swift.String, amount: Swift.Double, completion: (Swift.Optional&lt;&#x3c4;_0_0&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Project_Sandro_Giorgishvili"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbc/Desktop/Project_backup/Project_Sandro_Giorgishvili/NetworkWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "484">
+               </Location>
+               <Location
+                  uuid = "D69611D4-6FD6-4554-BE3B-4A8444ADA1D1 - 9e5f5c4a46e28178"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Project_Sandro_Giorgishvili.NetworkService.convertCurrency&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(to: Swift.String, from: Swift.String, amount: Swift.Double, completion: (Swift.Optional&lt;&#x3c4;_0_0&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Project_Sandro_Giorgishvili"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbc/Desktop/Project_backup/Project_Sandro_Giorgishvili/NetworkWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "518">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CF04077D-90E2-4F47-A9D0-CE13076BB0BD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/VIewControllers/LogInPageVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "logInTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BD8370B3-90D4-4B0E-915D-E6BC2D8AAC9D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetworkWorker.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "fetchData(to:from:amount:decodingType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4FB37670-BBFC-4CA3-9CF7-CB7B6AB9486C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/VIewControllers/HomePageVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "HomePageVC"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "4FB37670-BBFC-4CA3-9CF7-CB7B6AB9486C - bc0393dbb9d32bbc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_Sandro_Giorgishvili.HomePageVC.countryCurrencyGEO.getter : Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "Project_Sandro_Giorgishvili"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbc/Desktop/Project_backup/Project_Sandro_Giorgishvili/Project_Sandro_Giorgishvili/VIewControllers/HomePageVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "90">
+               </Location>
+               <Location
+                  uuid = "4FB37670-BBFC-4CA3-9CF7-CB7B6AB9486C - 1e05a85ac011a788"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_Sandro_Giorgishvili.HomePageVC.countryCurrencyGEO.setter : Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "Project_Sandro_Giorgishvili"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbc/Desktop/Project_backup/Project_Sandro_Giorgishvili/Project_Sandro_Giorgishvili/VIewControllers/HomePageVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "116">
+               </Location>
+               <Location
+                  uuid = "4FB37670-BBFC-4CA3-9CF7-CB7B6AB9486C - 2b1bf4df9b38c6b9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_Sandro_Giorgishvili.HomePageVC.countryCurrencyGEO.modify : Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "Project_Sandro_Giorgishvili"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbc/Desktop/Project_backup/Project_Sandro_Giorgishvili/Project_Sandro_Giorgishvili/VIewControllers/HomePageVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "4FB37670-BBFC-4CA3-9CF7-CB7B6AB9486C - 7c5dae7a87254caa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_Sandro_Giorgishvili.HomePageVC.countryCurrencyGEO.modify : Swift.Array&lt;Swift.String&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Project_Sandro_Giorgishvili"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbc/Desktop/Project_backup/Project_Sandro_Giorgishvili/Project_Sandro_Giorgishvili/VIewControllers/HomePageVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "15">
+               </Location>
+               <Location
+                  uuid = "4FB37670-BBFC-4CA3-9CF7-CB7B6AB9486C - 9abcb9ca77eaa401"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_Sandro_Giorgishvili.HomePageVC.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Project_Sandro_Giorgishvili.HomePageVC"
+                  moduleName = "Project_Sandro_Giorgishvili"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbc/Desktop/Project_backup/Project_Sandro_Giorgishvili/Project_Sandro_Giorgishvili/VIewControllers/HomePageVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "649">
+               </Location>
+               <Location
+                  uuid = "4FB37670-BBFC-4CA3-9CF7-CB7B6AB9486C - a8a228fa0fefc908"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Project_Sandro_Giorgishvili.HomePageVC.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Project_Sandro_Giorgishvili.HomePageVC&gt;"
+                  moduleName = "Project_Sandro_Giorgishvili"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tbc/Desktop/Project_backup/Project_Sandro_Giorgishvili/Project_Sandro_Giorgishvili/VIewControllers/HomePageVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "591">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DE9550CE-90EC-40B3-BE9E-EB3F3363315D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/VIewControllers/HomePageVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "getExchangeRates()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7531A433-011D-46B7-BFA8-8AF668A36342"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/VIewControllers/LogInPageVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "setExchangeValues(gelToUsd:gelToEur:gelToGbp:usdToEur:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A998899-E1D7-4C77-8CDF-34043DD091AB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/VIewControllers/LogInPageVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "setExchangeValues(gelToUsd:gelToEur:gelToGbp:usdToEur:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

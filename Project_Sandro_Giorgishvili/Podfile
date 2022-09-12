@@ -1,0 +1,15 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Project_Sandro_Giorgishvili' do
+  use_frameworks!
+
+  # Pods for Project_Sandro_Giorgishvili
+
+	pod 'Firebase/Analytics'
+	pod 'Firebase/Auth'	
+	pod 'Firebase/Core'
+	pod 'Firebase/Firestore'
+	pod 'SkeletonView'
+
+end
