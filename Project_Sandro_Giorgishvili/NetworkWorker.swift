@@ -16,10 +16,6 @@ enum NetworkError: Error {
 class NetworkService {
     static var shared = NetworkService()
     
-    let baseUrl = "https://api.apilayer.com/exchangerates_data/convert?"
-    let apiKey = "nf4YtQcFpT039fVWIGQ6eBJDdwaUIAab"
-    
-    
     var session = URLSession()
     
     init() {
@@ -81,7 +77,10 @@ class NetworkService {
 //        }.resume()
 //    }
     
-    func fetchData<T: Decodable>(to: String, from: String, amount: Double, decodingType: T.Type) async throws -> T {
+    func fetchExchangeRate<T: Decodable>(to: String, from: String, amount: Double, decodingType: T.Type) async throws -> T {
+        
+        let baseUrl = "https://api.apilayer.com/exchangerates_data/convert?"
+        let apiKey = "1"
         
         var urlComponent = URLComponents(string: baseUrl)
         

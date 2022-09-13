@@ -90,8 +90,8 @@
             filePath = "NetworkWorker.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "NetworkService"
             landmarkType = "3">
          </BreakpointContent>
@@ -106,8 +106,8 @@
             filePath = "NetworkWorker.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "NetworkService"
             landmarkType = "3">
          </BreakpointContent>
@@ -122,8 +122,8 @@
             filePath = "NetworkWorker.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "NetworkService"
             landmarkType = "3">
             <Locations>
@@ -186,9 +186,9 @@
             filePath = "NetworkWorker.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "fetchData(to:from:amount:decodingType:)"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "fetchExchangeRate(to:from:amount:decodingType:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -303,22 +303,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DE9550CE-90EC-40B3-BE9E-EB3F3363315D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Project_Sandro_Giorgishvili/VIewControllers/HomePageVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "getExchangeRates()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7531A433-011D-46B7-BFA8-8AF668A36342"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -326,8 +310,8 @@
             filePath = "Project_Sandro_Giorgishvili/VIewControllers/LogInPageVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "setExchangeValues(gelToUsd:gelToEur:gelToGbp:usdToEur:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -336,15 +320,79 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "6A998899-E1D7-4C77-8CDF-34043DD091AB"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Project_Sandro_Giorgishvili/VIewControllers/LogInPageVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "setExchangeValues(gelToUsd:gelToEur:gelToGbp:usdToEur:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "69C999A6-EC02-4A77-BEA4-14604FE46615"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/VIewControllers/HomePageVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "tabBarTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F7296529-2A7D-426F-9A20-0970BA16EFD4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/VIewControllers/InternalTransfersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "returnDesiredCurrency()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "54184DED-A2E8-4FC5-9703-4E60C4C65EAD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/VIewControllers/InternalTransfersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "getUserBalance()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "261DCF25-D1CE-4A9C-BF3C-DF246A46144B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/VIewControllers/InternalTransfersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "transferButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

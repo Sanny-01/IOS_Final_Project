@@ -10,7 +10,7 @@ import FirebaseAuth
 
 class ProfileVC: UIViewController {
     
-    @IBOutlet weak var profileSettingsTableView: UITableView!
+    @IBOutlet private weak var profileSettingsTableView: UITableView!
     
     let defaults = UserDefaults.standard
     

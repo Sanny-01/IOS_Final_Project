@@ -11,25 +11,23 @@ import FirebaseFirestore
 
 class PasswordChangeViewController: UIViewController {
     
-    @IBOutlet weak var currentPasswordTextField: UITextField!
-    @IBOutlet weak var newPasswordTextField: UITextField!
-    @IBOutlet weak var repeatPasswordTextField: UITextField!
-    
-    @IBOutlet weak var currentPasswordLabel: UILabel!
-    @IBOutlet weak var newPasswordLabel: UILabel!
-    @IBOutlet weak var repeatPasswordLabel: UILabel!
-    
-    
-    @IBOutlet weak var lowercaseLetterCriteriaLabel: UILabel!
-    @IBOutlet weak var uppercaseLetterCriteriaLabel: UILabel!
-    @IBOutlet weak var numberCriteriaLabel: UILabel!
-    @IBOutlet weak var specialCharacterCriteriaLabel: UILabel!
-    
-    
-    @IBOutlet weak var currentPasswordErrorLabel: UILabel!
-    @IBOutlet weak var newPasswordErrorLabel: UILabel!
-    @IBOutlet weak var repeatPasswordErrorLabel: UILabel!
-    
+    @IBOutlet private weak var currentPasswordTextField: UITextField!
+    @IBOutlet private weak var newPasswordTextField: UITextField!
+    @IBOutlet private weak var repeatPasswordTextField: UITextField!
+     
+    @IBOutlet private weak var currentPasswordLabel: UILabel!
+    @IBOutlet private weak var newPasswordLabel: UILabel!
+    @IBOutlet private weak var repeatPasswordLabel: UILabel!
+
+    @IBOutlet private weak var lowercaseLetterCriteriaLabel: UILabel!
+    @IBOutlet private weak var uppercaseLetterCriteriaLabel: UILabel!
+    @IBOutlet private weak var numberCriteriaLabel: UILabel!
+    @IBOutlet private weak var specialCharacterCriteriaLabel: UILabel!
+
+    @IBOutlet private weak var currentPasswordErrorLabel: UILabel!
+    @IBOutlet private weak var newPasswordErrorLabel: UILabel!
+    @IBOutlet private weak var repeatPasswordErrorLabel: UILabel!
+
     var passwordCriteria = 0
     var emptyFields = 0
     var passwordsDoNotMatch = false

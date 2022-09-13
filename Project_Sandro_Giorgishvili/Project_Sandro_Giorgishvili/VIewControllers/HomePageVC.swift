@@ -15,11 +15,11 @@ class HomePageVC: UIViewController {
     var countryFlagNames = ["Flag_of_Europe.svg", "Flag_of_the_United_States.svg", "Flag_of_the_United_Kingdom.svg"]
     var countryCurrency = ["EUR", "USD", "GBP"]
     var countryCurrencyGEO = ["ევრო", "აშშ დოლარი", "გირვანქა სტერლინგი"]
-    var exchangeRate = [ExchangeRates]()
+    var exchangeRate = [Double]()
     
     let defaults = UserDefaults.standard
     
-    //let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet private weak var homePageiView: UIView!
     @IBOutlet private weak var transfersPageView: UIView!
@@ -57,7 +57,7 @@ class HomePageVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        deleteChildrenViewControllersAndSetTintColor(tag: 0)
+        deleteChildrenViewControllersAndSetTintColor(tag: 1)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -90,24 +90,23 @@ class HomePageVC: UIViewController {
     func getExchangeRates() {
         currencyTableView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .wetAsphalt), animation: nil, transition: .crossDissolve(0.25))
         
-        
-        
-//        do {
-//            let fetchedExchangeRates = try context.fetch(ExchangeRates.fetchRequest())
-//            exchangeRate = fetchedExchangeRates
-//            //printContent(exchangeRate)
-//    
-//        } catch {
-//            print("Could not load data")
-//        }
-//        print(exchangeRate)
+        do {
+            let fetchedExchangeRates = try context.fetch(ExchangeRates.fetchRequest())
+            
+            guard let firstValueOfExchangeRates = fetchedExchangeRates.first else { return }
+            
+            exchangeRate.append(firstValueOfExchangeRates.gelToUsd)
+            exchangeRate.append(firstValueOfExchangeRates.gelToEur)
+            exchangeRate.append(firstValueOfExchangeRates.gelToGbp)
+        } catch {
+            print("Could not load data")
+        }
         
         currencyTableView.reloadData()
         
         self.currencyTableView.stopSkeletonAnimation()
         self.currencyTableView.hideSkeleton()
     }
-    
     
     func setUpBubbleView() {
         bubbleImageView.center.x = homePageiView.center.x
@@ -116,8 +115,17 @@ class HomePageVC: UIViewController {
     @IBAction func tabBarTapped(_ sender: UIButton) {
         let tag = sender.tag
         
-        if tag == 0 && homePageImage.tintColor != .systemRed {
+        print(tag)
+        if tag == 0 && transfersPageImage.tintColor != .midnightBlue {
             deleteChildrenViewControllersAndSetTintColor(tag: 0)
+            
+            let storyboard = UIStoryboard(name: "TransfersBoard", bundle: nil)
+            guard let Currency = storyboard.instantiateViewController(withIdentifier: "TransfersViewController") as? TransfersViewController else { return }
+            contentView.addSubview(Currency.view)
+            self.addChild(Currency)
+            Currency.didMove(toParent: self)
+        } else if tag == 1 && homePageImage.tintColor != .midnightBlue {
+            deleteChildrenViewControllersAndSetTintColor(tag: 1)
             
             let storyboard = UIStoryboard(name: "HomePageBoard", bundle: nil)
             guard let Home = storyboard.instantiateViewController(withIdentifier: "home_page_vc") as? HomePageVC else { return }
@@ -125,15 +133,7 @@ class HomePageVC: UIViewController {
             self.addChild(Home)
             Home.didMove(toParent: self)
             
-        } else if tag == 1 && transfersPageImage.tintColor != .systemRed {
-            deleteChildrenViewControllersAndSetTintColor(tag: 1)
-            
-            let storyboard = UIStoryboard(name: "TransfersBoard", bundle: nil)
-            guard let Currency = storyboard.instantiateViewController(withIdentifier: "TransfersViewController") as? TransfersViewController else { return }
-            contentView.addSubview(Currency.view)
-            self.addChild(Currency)
-            Currency.didMove(toParent: self)
-        } else if tag == 2 && profilePageImage.tintColor != .systemRed {
+        }else if tag == 2 && profilePageImage.tintColor != .midnightBlue {
             deleteChildrenViewControllersAndSetTintColor(tag: 2)
             
             let storyboard = UIStoryboard(name: "ProfilePageBoard", bundle: nil)
@@ -142,6 +142,9 @@ class HomePageVC: UIViewController {
             self.addChild(PasswordChange)
             PasswordChange.didMove(toParent: self)
         }
+    }
+    @IBAction func touch(_ sender: Any) {
+        print("TOUCHED")
     }
     
     func removeChildrenViewControllers() {
@@ -159,15 +162,15 @@ class HomePageVC: UIViewController {
         switch tag {
         case 0:
             removeChildrenViewControllers()
-            animateTap(for: homePageiView)
-            homePageImage.tintColor = .midnightBlue
-            transfersPageImage.tintColor = .white
-            profilePageImage.tintColor = .white
-        case 1:
-            removeChildrenViewControllers()
             animateTap(for: transfersPageView)
             homePageImage.tintColor = .white
             transfersPageImage.tintColor = .midnightBlue
+            profilePageImage.tintColor = .white
+        case 1:
+            removeChildrenViewControllers()
+            animateTap(for: homePageiView)
+            homePageImage.tintColor = .midnightBlue
+            transfersPageImage.tintColor = .white
             profilePageImage.tintColor = .white
         case 2:
             removeChildrenViewControllers()
@@ -218,7 +221,7 @@ extension HomePageVC: UITableViewDelegate, UITableViewDataSource, SkeletonTableV
         cell.countryFlag.image = UIImage(named: countryFlagNames[indexPath.row])
         cell.currencyShortNameLbl.text = countryCurrency[indexPath.row]
         cell.currencyNameInGEOLbl.text = countryCurrencyGEO[indexPath.row]
-            //cell.currencyAmountLbl.text = "\(round(exchangeRate[indexPath.row] * 100) / 100)"
+        cell.currencyAmountLbl.text = "\(round(exchangeRate[indexPath.row] * 100) / 100)"
         
         return cell
     }

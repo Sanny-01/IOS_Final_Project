@@ -11,15 +11,15 @@ import Firebase
 
 class SignUpVC: UIViewController {
     
-    @IBOutlet weak var userNameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var repeatPasswordTextField: UITextField!
-    
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var passwordLabel: UILabel!
-    @IBOutlet weak var repeatPasswordLabel: UILabel!
+    @IBOutlet private weak var userNameTextField: UITextField!
+    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var repeatPasswordTextField: UITextField!
+     
+    @IBOutlet private weak var usernameLabel: UILabel!
+    @IBOutlet private weak var emailLabel: UILabel!
+    @IBOutlet private weak var passwordLabel: UILabel!
+    @IBOutlet private weak var repeatPasswordLabel: UILabel!
     
     var emptyFields = 0
     var passwordsDoNotMatch = false

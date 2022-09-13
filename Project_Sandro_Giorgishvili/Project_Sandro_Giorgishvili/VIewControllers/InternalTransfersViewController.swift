@@ -11,17 +11,23 @@ class InternalTransfersViewController: UIViewController {
     
     let defaults = UserDefaults.standard
     
-    var GELToUSD = 0.00
-    var GELToEUR = 0.00
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var gelToUsd: Double = 0.00
+    var gelToEur: Double = 0.00
+    var usdToEur: Double = 0.00
+    
+    var balanceInGel = 0.00
+    var balanceInUsd = 0.00
+    var balanceInEur = 0.00
     
     var availableCurrencies = ["GEL", "USD", "EUR"]
     
-    @IBOutlet weak var sellTextField: UITextField!
-    @IBOutlet weak var buyTextField: UITextField!
+    @IBOutlet private weak var sellTextField: UITextField!
+    @IBOutlet private weak var buyTextField: UITextField!
     
-    
-    @IBOutlet weak var fromTextField: UITextField!
-    @IBOutlet weak var toTextField: UITextField!
+    @IBOutlet private weak var fromTextField: UITextField!
+    @IBOutlet private weak var toTextField: UITextField!
     
     
     
@@ -31,12 +37,20 @@ class InternalTransfersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUserBalance()
         getExchangeValues()
         setUpPickers()
-
-        // Do any additional setup after loading the view.
     }
-
+    
+    func getUserBalance() {
+        let defaults = UserDefaults.standard
+        
+        balanceInGel = round(defaults.double(forKey: userDefaultKeyNames.GEL.rawValue) * 100) / 100
+        balanceInUsd = round(defaults.double(forKey: userDefaultKeyNames.USD.rawValue) * 100) / 100
+        balanceInEur = round(defaults.double(forKey: userDefaultKeyNames.EUR.rawValue) * 100) / 100
+        
+    }
+    
     func setUpPickers() {
         fromTextField.inputView = sellCurrencyPicker
         toTextField.inputView = buyCurrencyPicker
@@ -52,26 +66,138 @@ class InternalTransfersViewController: UIViewController {
     }
     
     func getExchangeValues() {
-        GELToUSD = defaults.double(forKey: exchangeRateNames.GELToUSD.rawValue)
-        GELToEUR = defaults.double(forKey: exchangeRateNames.GELToEUR.rawValue)
-    }
-    
-    @IBAction func sellValueEditing(_ sender: UITextField) {
-        
-        guard let sell = sellTextField.text else { return }
-        
-        if !sell.isEmpty {
-            let sellAmount = Double(sell)
-            buyTextField.text = "\(round(sellAmount! / GELToUSD * 100.0) / 100.0)"
-        } else
-        {
-            buyTextField.text = ""
+        do {
+            let fetchedExchangeRates = try context.fetch(ExchangeRates.fetchRequest())
+            guard let firstValueOfExchangeRates = fetchedExchangeRates.first else { return }
+            
+            gelToUsd = firstValueOfExchangeRates.gelToUsd
+            gelToEur = firstValueOfExchangeRates.gelToEur
+            usdToEur = firstValueOfExchangeRates.usdToEur
+        } catch {
+            print("Could not load data")
         }
     }
     
+    @IBAction func sellValueEditing(_ sender: UITextField) {
+        setBuyAmount()
+    }
     
-    func returnDesiredCurrency() {
+    @IBAction func buyValueEditing(_ sender: UITextField) {
+        setSellAmount()
+    }
+    
+    func returnDesiredCurrency() -> Double? {
+        guard let toTextFieldText = toTextField.text else { return nil }
+        guard let fromTextFieldText = fromTextField.text else { return nil }
         
+        if !fromTextFieldText.isEmpty  && !toTextFieldText.isEmpty {
+            if fromTextFieldText == "GEL" {
+                switch toTextFieldText {
+                case "USD":
+                    return 1 / gelToUsd
+                case "EUR":
+                    return 1 / gelToEur
+                default:
+                    return nil
+                }
+            } else if toTextFieldText == "GEL" {
+                switch fromTextFieldText {
+                case "USD":
+                    return gelToUsd
+                case "EUR":
+                    return gelToEur
+                default:
+                    return nil
+                }
+            } else {
+                switch fromTextFieldText {
+                case "USD":
+                    return usdToEur
+                case "EUR":
+                    return 1 / usdToEur
+                default:
+                    return nil
+                }
+            }
+        }
+        return nil
+    }
+    
+    func getDesiredCurrencyBalance() -> Double? {
+        switch fromTextField.text {
+        case "GEL":
+            return balanceInGel
+        case "USD":
+            return balanceInUsd
+        case "EUR":
+            return balanceInUsd
+        default:
+            return nil
+        }
+    }
+    
+    @IBAction func transferButtonTapped(_ sender: UIButton) {
+        if validateForEmptiness() {
+            guard let sellText = sellTextField.text else { return }
+            guard let sellAmount = Double(sellText) else { return }
+            
+            guard let buyText = buyTextField.text else { return }
+            guard let buyAmount = Double(buyText) else { return }
+            
+            guard let fromCurrencyBalance = getDesiredCurrencyBalance() else { return }
+            
+            if fromCurrencyBalance >= sellAmount {
+                print(buyAmount)
+            }
+            else {
+                showAlertWithOkButton(title: nil, message: "You do not have enough money on balance.")
+                
+            }
+        }
+    }
+    
+    func validateForEmptiness() -> Bool {
+        if fromTextField.text?.isEmpty ?? true || toTextField.text?.isEmpty ?? true {
+            clearBuyAndSell()
+            showAlertWithOkButton(title: nil, message: "Please select currencies")
+            return false
+        } else if buyTextField.text?.isEmpty ?? true || sellTextField.text?.isEmpty ?? true {
+            clearBuyAndSell()
+            showAlertWithOkButton(title: nil, message: "Please select amount to sell")
+            return false
+        }
+        // if validations are successfull and user has enered amount already refresh it
+        setBuyAmount()
+        
+        return true
+    }
+    
+    func clearBuyAndSell() {
+        buyTextField.text = ""
+        sellTextField.text = ""
+    }
+    
+    private func setBuyAmount() {
+        guard let desiredCurrency = returnDesiredCurrency() else { return }
+        guard let sellAmountText = sellTextField.text else { return }
+        // if value becomes zero
+        guard let sellAmount = Double(sellAmountText) else {
+            buyTextField.text = ""
+            return
+        }
+        
+        buyTextField.text = "\(round(sellAmount * desiredCurrency * 100.0) / 100.0)"
+    }
+    
+    private func setSellAmount() {
+        guard let desiredCurrency = returnDesiredCurrency() else { return }
+        guard let buyAmountTExt = buyTextField.text else { return }
+        guard let buyAmount = Double(buyAmountTExt) else {
+            sellTextField.text = ""
+            return
+        }
+        
+        sellTextField.text = "\(round(buyAmount / desiredCurrency * 100.0) / 100.0)"
     }
 }
 

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2E016B27DAF94ACCC4AABBBD /* Pods_Project_Sandro_Giorgishvili.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE090829F7D821B783E0A85E /* Pods_Project_Sandro_Giorgishvili.framework */; };
-		3B1C64E6289EBE47004F2B27 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1C64E5289EBE47004F2B27 /* SideMenuViewController.swift */; };
 		3B2AC01D28CF46680030D98C /* ExchangeRates_CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B2AC01B28CF46680030D98C /* ExchangeRates_CoreData.xcdatamodeld */; };
 		3B3ED61628CA42F60036D760 /* ProfilePageBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B3ED61528CA42F60036D760 /* ProfilePageBoard.storyboard */; };
 		3B3ED61828CA48230036D760 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3ED61728CA48230036D760 /* ProfileVC.swift */; };
@@ -52,7 +51,6 @@
 
 /* Begin PBXFileReference section */
 		2A40ED5311E574AD14C4A72A /* Pods-Project_Sandro_Giorgishvili.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project_Sandro_Giorgishvili.release.xcconfig"; path = "Target Support Files/Pods-Project_Sandro_Giorgishvili/Pods-Project_Sandro_Giorgishvili.release.xcconfig"; sourceTree = "<group>"; };
-		3B1C64E5289EBE47004F2B27 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		3B2AC01C28CF46680030D98C /* ExchangeRates_CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExchangeRates_CoreData.xcdatamodel; sourceTree = "<group>"; };
 		3B3ED61528CA42F60036D760 /* ProfilePageBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfilePageBoard.storyboard; sourceTree = "<group>"; };
 		3B3ED61728CA48230036D760 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 				3BECBC8F2896F3A500ACFEC5 /* LogInPageVC.swift */,
 				3B74759D2898453700BE3AD5 /* HomePageVC.swift */,
 				3B5CD4A82899A497003D5923 /* PasswordChangeViewController.swift */,
-				3B1C64E5289EBE47004F2B27 /* SideMenuViewController.swift */,
 				3BDF474428C4D8E000ABF484 /* CurrencyVC.swift */,
 				3B3ED61728CA48230036D760 /* ProfileVC.swift */,
 				3BD7C59528CD463000C08D08 /* InternalTransfersViewController.swift */,
@@ -358,7 +355,6 @@
 				3BD7C5A028CE384400C08D08 /* TransferCell.swift in Sources */,
 				3BDF474728C4DC2A00ABF484 /* CurrencyCell.swift in Sources */,
 				3B4CD4B928A0FEEC0030724A /* Extensions.swift in Sources */,
-				3B1C64E6289EBE47004F2B27 /* SideMenuViewController.swift in Sources */,
 				3B5CD494289978D3003D5923 /* HomePagePresenter.swift in Sources */,
 				3BECBC8E2896F38A00ACFEC5 /* SignUpVC.swift in Sources */,
 				3BBFA51228CBECA40092B944 /* UserCredentials.swift in Sources */,

@@ -17,11 +17,11 @@ class LogInPageVC: UIViewController {
     
     var countryCurrency = ["EUR", "USD", "GBP"]
     
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
+
+    @IBOutlet private weak var emailLabel: UILabel!
+    @IBOutlet private weak var passwordLabel: UILabel!
     
     var exchangeRate = [String]()
     
@@ -81,15 +81,13 @@ class LogInPageVC: UIViewController {
                     
                     Task {
                         do {
-                            let gelToUsd = try await NetworkService().fetchData(to: "GEL", from: "USD", amount: 1.00, decodingType: CurrencyAmount.self)
-                            let gelToEur = try await NetworkService().fetchData(to: "GEL", from: "EUR", amount: 1.00, decodingType: CurrencyAmount.self)
-                            let gelToGbp = try await NetworkService().fetchData(to: "GEL", from: "GBP", amount: 1.00, decodingType: CurrencyAmount.self)
-                            let usdToEur = try await NetworkService().fetchData(to: "USD", from: "EUR", amount: 1.00, decodingType: CurrencyAmount.self)
+                            let gelToUsd = try await NetworkService().fetchExchangeRate(to: "GEL", from: "USD", amount: 1.00, decodingType: CurrencyAmount.self)
+                            let gelToEur = try await NetworkService().fetchExchangeRate(to: "GEL", from: "EUR", amount: 1.00, decodingType: CurrencyAmount.self)
+                            let gelToGbp = try await NetworkService().fetchExchangeRate(to: "GEL", from: "GBP", amount: 1.00, decodingType: CurrencyAmount.self)
+                            let usdToEur = try await NetworkService().fetchExchangeRate(to: "USD", from: "EUR", amount: 1.00, decodingType: CurrencyAmount.self)
                             
-                            print(gelToUsd)
-                            print(gelToEur)
-                            print(gelToGbp)
-                            
+                            // If new API did not give us new data old core data will not be erased and will be used for current user
+                            self?.deleteExchangeCoreData()
                             self?.setExchangeValues(gelToUsd: gelToUsd.result, gelToEur: gelToEur.result, gelToGbp: gelToGbp.result, usdToEur: usdToEur.result)
                             
                             print("GOTTEN ALL VALUES !!!!!!!!!")
@@ -111,6 +109,11 @@ class LogInPageVC: UIViewController {
         
         Firestore.firestore().collection("users").document(userUID).getDocument { snapshot, error in
             if error == nil {
+                
+                snapshot?.reference.updateData(["username" : "SHMANDRO"])
+                
+                //snapshot?.data().update
+                
                 guard let snapshot = snapshot?.data()  else { return }
                 let userData = UserInfo.init(with: snapshot)
                 
@@ -127,6 +130,17 @@ class LogInPageVC: UIViewController {
             } else {
                 print("Error appeared while getting user info")
             }
+        }
+    }
+    
+    func deleteExchangeCoreData() {
+        do {
+            let fetchedExchangeRates = try context.fetch(ExchangeRates.fetchRequest())
+            
+            fetchedExchangeRates.forEach { context.delete($0) }
+            try context.save()
+        } catch {
+            print("Could not load and delete data")
         }
     }
     

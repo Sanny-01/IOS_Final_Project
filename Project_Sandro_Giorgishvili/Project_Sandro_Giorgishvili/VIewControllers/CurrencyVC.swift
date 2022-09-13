@@ -11,7 +11,7 @@ class CurrencyVC: UIViewController {
     
     var networService = NetworkService.shared
     
-    @IBOutlet weak var currencyTableView: UITableView!
+    @IBOutlet private weak var currencyTableView: UITableView!
     
     var countryFlagNames = ["Flag_of_Europe.svg", "Flag_of_the_United_States.svg", "Flag_of_the_United_Kingdom.svg"]
     var countryCurrency = ["EUR", "USD", "GBP"]

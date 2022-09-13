@@ -9,25 +9,18 @@ import UIKit
 
 class TransfersViewController: UIViewController {
     
-    @IBOutlet weak var transfersTableView: UITableView!
+    @IBOutlet private weak var transfersTableView: UITableView!
     
     let transfers = ["Internal transfer", "To someone else"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
-        getExchangeRates()
     }
     
     func setUpTableView() {
         transfersTableView.delegate = self
         transfersTableView.dataSource = self
-    }
-    
-    func getExchangeRates() {
-        let defaults = UserDefaults.standard
-        
-        
     }
 }
 
@@ -48,9 +41,9 @@ extension TransfersViewController: UITableViewDataSource, UITableViewDelegate {
         case "Internal transfer":
             let storyboard = UIStoryboard(name: "InternalTransfersBoard", bundle: nil)
             let transfers = storyboard.instantiateViewController(withIdentifier: "InternalTransfersViewController") as! InternalTransfersViewController
-            
+
             present(transfers, animated: true)
-            
+
         case "To someone else":
             print("Sandro")
 //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
