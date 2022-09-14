@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class InternalTransfersViewController: UIViewController {
     
@@ -29,26 +31,58 @@ class InternalTransfersViewController: UIViewController {
     @IBOutlet private weak var fromTextField: UITextField!
     @IBOutlet private weak var toTextField: UITextField!
     
+    @IBOutlet private weak var balanceForFromLbl: UILabel!
+    @IBOutlet private weak var balanceForToLbl: UILabel!
     
+    @IBOutlet weak var toLabel: UIView!
     
     var sellCurrencyPicker = UIPickerView()
     var buyCurrencyPicker = UIPickerView()
     
+    let sellTextFieldBottomLine = CALayer()
+    let buyTextFieldBottomLine = CALayer()
+    let fromTextFieldBottomLine = CALayer()
+    let toTextFIeldBottomLine = CALayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTitle()
+        setUpTextFields()
         getUserBalance()
         getExchangeValues()
         setUpPickers()
     }
     
+    private func setUpTitle() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Internal Transfer"
+    }
+    
+    
+    func setUpTextFields() {
+        setUpTextFieldBottomLine(textField: sellTextField, bottomLine: sellTextFieldBottomLine)
+        setUpTextFieldBottomLine(textField: buyTextField, bottomLine: buyTextFieldBottomLine)
+        setUpTextFieldBottomLine(textField: fromTextField, bottomLine: fromTextFieldBottomLine)
+        setUpTextFieldBottomLine(textField: toTextField, bottomLine: toTextFIeldBottomLine)
+        
+        guard let chevronDonwImage = UIImage(systemName: "chevron.down") else { return }
+        
+        fromTextField.setUpRightViewImage(image: chevronDonwImage)
+        toTextField.setUpRightViewImage(image: chevronDonwImage)
+    }
+    
+    func setUpTextFieldBottomLine(textField: UITextField, bottomLine: CALayer) {
+        textField.borderStyle = .none
+        bottomLine.frame = CGRect(x: 0, y: textField.frame.height - 2 , width: textField.frame.width, height: 1)
+        bottomLine.backgroundColor = UIColor.lightGray.cgColor
+        
+        textField.layer.addSublayer(bottomLine)
+    }
+    
     func getUserBalance() {
-        let defaults = UserDefaults.standard
-        
-        balanceInGel = round(defaults.double(forKey: userDefaultKeyNames.GEL.rawValue) * 100) / 100
-        balanceInUsd = round(defaults.double(forKey: userDefaultKeyNames.USD.rawValue) * 100) / 100
-        balanceInEur = round(defaults.double(forKey: userDefaultKeyNames.EUR.rawValue) * 100) / 100
-        
+        balanceInGel = defaults.double(forKey: userDefaultKeyNames.GEL.rawValue)
+        balanceInUsd = defaults.double(forKey: userDefaultKeyNames.USD.rawValue)
+        balanceInEur = defaults.double(forKey: userDefaultKeyNames.EUR.rawValue)
     }
     
     func setUpPickers() {
@@ -123,14 +157,27 @@ class InternalTransfersViewController: UIViewController {
         return nil
     }
     
-    func getDesiredCurrencyBalance() -> Double? {
+    func getFromCurrencyBalance() -> Double? {
         switch fromTextField.text {
         case "GEL":
             return balanceInGel
         case "USD":
             return balanceInUsd
         case "EUR":
+            return balanceInEur
+        default:
+            return nil
+        }
+    }
+    
+    func getToCurrencyBalance() -> Double? {
+        switch toTextField.text {
+        case "GEL":
+            return balanceInGel
+        case "USD":
             return balanceInUsd
+        case "EUR":
+            return balanceInEur
         default:
             return nil
         }
@@ -144,14 +191,31 @@ class InternalTransfersViewController: UIViewController {
             guard let buyText = buyTextField.text else { return }
             guard let buyAmount = Double(buyText) else { return }
             
-            guard let fromCurrencyBalance = getDesiredCurrencyBalance() else { return }
+            guard let fromCurrencyBalance = getFromCurrencyBalance() else { return }
+            guard let toCurrencyBalance = getToCurrencyBalance() else { return }
             
             if fromCurrencyBalance >= sellAmount {
-                print(buyAmount)
+                
+                guard let fromBalanceKeyInFirestore = fromTextField.text else { return }
+                guard let toBalanceKeyinFirestore = toTextField.text else { return }
+                
+                guard  let userUID = Auth.auth().currentUser?.uid else { return }
+                
+                Firestore.firestore().collection("users").document(userUID).getDocument { [weak self] snapshot, error in
+                    
+                    if error == nil {
+                        
+                        snapshot?.reference.updateData([fromBalanceKeyInFirestore: "\(round( (fromCurrencyBalance - sellAmount) * 100) / 100 )"])
+                        snapshot?.reference.updateData([toBalanceKeyinFirestore: "\(round ( (toCurrencyBalance + buyAmount) * 100 ) / 100)"])
+                        
+                        self?.updateUserDefaultValuesForBalance(key1: fromBalanceKeyInFirestore, value1: fromCurrencyBalance - sellAmount, key2: toBalanceKeyinFirestore, value2: toCurrencyBalance + buyAmount)
+                        
+                        self?.dismiss(animated: true, completion: nil)
+                    }
+                }
             }
             else {
                 showAlertWithOkButton(title: nil, message: "You do not have enough money on balance.")
-                
             }
         }
     }
@@ -199,6 +263,11 @@ class InternalTransfersViewController: UIViewController {
         
         sellTextField.text = "\(round(buyAmount / desiredCurrency * 100.0) / 100.0)"
     }
+    
+    private func updateUserDefaultValuesForBalance(key1: String, value1: Double, key2: String, value2: Double) {
+        defaults.set(value1, forKey:key1)
+        defaults.set(value2, forKey: key2)
+    }
 }
 
 extension InternalTransfersViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -227,14 +296,39 @@ extension InternalTransfersViewController: UIPickerViewDataSource, UIPickerViewD
             fromTextField.text = availableCurrencies[row]
             fromTextField.resignFirstResponder()
             
-            if fromTextField.text == toTextField.text { toTextField.text = ""}
+            if fromTextField.text == toTextField.text {
+                toTextField.text = ""
+                balanceForToLbl.text = ""
+                
+            }
+            balanceForFromLbl.text = "\(defaults.double(forKey:availableCurrencies[row]))"
         case 1:
             toTextField.text = availableCurrencies[row]
             toTextField.resignFirstResponder()
             
-            if fromTextField.text == toTextField.text { fromTextField.text = ""}
+            if fromTextField.text == toTextField.text {
+                fromTextField.text = ""
+                balanceForFromLbl.text = ""
+            }
+            balanceForToLbl.text = "\(defaults.double(forKey:availableCurrencies[row]))"
+
         default:
             print("Error occured")
         }
+    }
+}
+
+extension UITextField {
+    func setUpRightViewImage(image: UIImage) {
+        self.rightViewMode = .always
+        
+        let rightView = UIImageView()
+        let imageView = UIImageView(frame: CGRect(x: -15, y: 0, width: 15, height: 8))
+        
+        imageView.image = image
+        rightView.addSubview(imageView)
+        rightView.tintColor = .lightGray
+        
+        self.rightView = rightView
     }
 }

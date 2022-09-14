@@ -39,17 +39,16 @@ extension TransfersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch transfers[indexPath.row] {
         case "Internal transfer":
-            let storyboard = UIStoryboard(name: "InternalTransfersBoard", bundle: nil)
-            let transfers = storyboard.instantiateViewController(withIdentifier: "InternalTransfersViewController") as! InternalTransfersViewController
+            let storyboard = UIStoryboard(name: "InternalTransfers", bundle: nil)
+            let internalTransfersViewController = storyboard.instantiateViewController(withIdentifier: "InternalTransfersViewController") as! InternalTransfersViewController
 
-            present(transfers, animated: true)
-
+            present(internalTransfersViewController, animated: true)
         case "To someone else":
             print("Sandro")
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let initialController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInPageVC
-//
-//            let navigationController = UINavigationController(rootViewController: initialController)
+            let storyboard = UIStoryboard(name: "TransferToSomeone", bundle: nil)
+            let transferToSomeoneViewController = storyboard.instantiateViewController(withIdentifier: "TransferToSomeoneViewController") as! TransferToSomeoneViewController
+
+            present(transferToSomeoneViewController, animated: true)
         default:
             print("Error occured")
         }

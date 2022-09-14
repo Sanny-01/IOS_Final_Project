@@ -45,8 +45,15 @@ class ProfileVC: UIViewController {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let logInVc = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as? LogInPageVC
-            guard let logInVC = logInVc else { return }
-            self.navigationController?.pushViewController(logInVC, animated: true)
+            guard let logInVC = logInVc else { return } 
+            
+            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            guard let window = windowScene?.windows.first else { return }
+            let navigationController = UINavigationController(rootViewController: logInVC)
+            UIView.transition(with: window, duration: 0.2) {
+                window.rootViewController = navigationController
+                window.makeKeyAndVisible()
+            }
         } catch let signOutError {
             showAlertWithOkButton(title: nil, message: signOutError.localizedDescription)
         }
@@ -56,6 +63,9 @@ class ProfileVC: UIViewController {
         defaults.removeObject(forKey: userDefaultKeyNames.username.rawValue)
         defaults.removeObject(forKey: userDefaultKeyNames.email.rawValue)
         defaults.removeObject(forKey: userDefaultKeyNames.userId.rawValue)
+        defaults.removeObject(forKey: userDefaultKeyNames.GEL.rawValue)
+        defaults.removeObject(forKey: userDefaultKeyNames.USD.rawValue)
+        defaults.removeObject(forKey: userDefaultKeyNames.EUR.rawValue)
     }
 }
 
@@ -79,10 +89,12 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let storyboard = UIStoryboard(name: "PasswordChangeBoard", bundle: nil)
+        let storyboard = UIStoryboard(name: "PasswordChange", bundle: nil)
         
         let passwordChangeViewController = storyboard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! PasswordChangeViewController
         
-        self.navigationController?.pushViewController(passwordChangeViewController, animated: true)
+        navigationController?.pushViewController(passwordChangeViewController, animated: true)
+        
+        //present(passwordChangeViewController,animated: true)
     }
 }

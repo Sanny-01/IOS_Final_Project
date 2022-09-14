@@ -71,7 +71,7 @@ class PasswordChangeViewController: UIViewController {
     
     func setUpTextFieldBottomLine(textField: UITextField, bottomLine: CALayer) {
         textField.borderStyle = .none
-        bottomLine.frame = CGRect(x: 0, y: currentPasswordTextField.frame.height - 2 , width: currentPasswordTextField.frame.width, height: 1)
+        bottomLine.frame = CGRect(x: 0, y: textField.frame.height - 2 , width: textField.frame.width, height: 1)
         bottomLine.backgroundColor = UIColor.lightGray.cgColor
         
         textField.layer.addSublayer(bottomLine)
@@ -175,7 +175,7 @@ class PasswordChangeViewController: UIViewController {
                             }
                             else {
                                 // move user to home page
-                                let storyboard = UIStoryboard(name: "HomePageBoard", bundle: nil)
+                                let storyboard = UIStoryboard(name: "HomePage", bundle: nil)
                                 let homeVC = storyboard.instantiateViewController(withIdentifier: "home_page_vc") as? HomePageVC
                                 guard let homeVc = homeVC else { return }
                                 

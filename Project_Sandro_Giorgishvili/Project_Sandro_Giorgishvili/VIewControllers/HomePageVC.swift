@@ -41,6 +41,7 @@ class HomePageVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpBalanceView()
         setUpTabBar()
         getandSetUserData()
         setUpTableView()
@@ -63,6 +64,12 @@ class HomePageVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         removeChildrenViewControllers()
         //deleteChildrenViewControllersAndSetTintColor(tag: 0)
+    }
+    
+    private func setUpBalanceView() {
+        balanceView.layer.borderWidth = 2
+        balanceView.layer.cornerRadius = 22
+        balanceView.layer.borderColor = UIColor.cyan.cgColor
     }
     
     func setUpTableView() {
@@ -119,28 +126,32 @@ class HomePageVC: UIViewController {
         if tag == 0 && transfersPageImage.tintColor != .midnightBlue {
             deleteChildrenViewControllersAndSetTintColor(tag: 0)
             
-            let storyboard = UIStoryboard(name: "TransfersBoard", bundle: nil)
-            guard let Currency = storyboard.instantiateViewController(withIdentifier: "TransfersViewController") as? TransfersViewController else { return }
-            contentView.addSubview(Currency.view)
-            self.addChild(Currency)
-            Currency.didMove(toParent: self)
+            let storyboard = UIStoryboard(name: "TransfersPage", bundle: nil)
+            guard let transfersViewController = storyboard.instantiateViewController(withIdentifier: "TransfersViewController") as? TransfersViewController else { return }
+            let navigationVC = UINavigationController(rootViewController: transfersViewController)
+                        
+            contentView.addSubview(navigationVC.view)
+            self.addChild(navigationVC)
+            navigationVC.didMove(toParent: self)
         } else if tag == 1 && homePageImage.tintColor != .midnightBlue {
             deleteChildrenViewControllersAndSetTintColor(tag: 1)
             
-            let storyboard = UIStoryboard(name: "HomePageBoard", bundle: nil)
-            guard let Home = storyboard.instantiateViewController(withIdentifier: "home_page_vc") as? HomePageVC else { return }
-            contentView.addSubview(Home.view)
-            self.addChild(Home)
-            Home.didMove(toParent: self)
+            let storyboard = UIStoryboard(name: "HomePage", bundle: nil)
+            guard let homeViewController = storyboard.instantiateViewController(withIdentifier: "home_page_vc") as? HomePageVC else { return }
+            contentView.addSubview(homeViewController.view)
+            self.addChild(homeViewController)
+            homeViewController.didMove(toParent: self)
             
-        }else if tag == 2 && profilePageImage.tintColor != .midnightBlue {
+        } else if tag == 2 && profilePageImage.tintColor != .midnightBlue {
             deleteChildrenViewControllersAndSetTintColor(tag: 2)
             
-            let storyboard = UIStoryboard(name: "ProfilePageBoard", bundle: nil)
-            guard let PasswordChange = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileVC else { return }
-            contentView.addSubview(PasswordChange.view)
-            self.addChild(PasswordChange)
-            PasswordChange.didMove(toParent: self)
+            let storyboard = UIStoryboard(name: "ProfilePage", bundle: nil)
+            guard let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileVC else { return }
+            let navigationVC = UINavigationController(rootViewController: profileViewController)
+            navigationVC.view.frame = self.view.frame
+            contentView.addSubview(navigationVC.view)
+            self.addChild(navigationVC)
+            navigationVC.didMove(toParent: self)
         }
     }
     @IBAction func touch(_ sender: Any) {

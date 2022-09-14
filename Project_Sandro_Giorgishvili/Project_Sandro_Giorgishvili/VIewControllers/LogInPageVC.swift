@@ -75,7 +75,7 @@ class LogInPageVC: UIViewController {
                     
                     self?.setUserDefaultValues()
                     
-                    let storyboard = UIStoryboard(name: "HomePageBoard", bundle: nil)
+                    let storyboard = UIStoryboard(name: "HomePage", bundle: nil)
                     let homeVC = storyboard.instantiateViewController(withIdentifier: "home_page_vc") as? HomePageVC
                     guard let homeVC = homeVC else { return }
                     
@@ -106,14 +106,10 @@ class LogInPageVC: UIViewController {
     
     func setUserDefaultValues() {
         guard  let userUID = Auth.auth().currentUser?.uid else { return }
-        
-        Firestore.firestore().collection("users").document(userUID).getDocument { snapshot, error in
+
+         Firestore.firestore().collection("users").document(userUID).getDocument { snapshot, error in
             if error == nil {
-                
-                snapshot?.reference.updateData(["username" : "SHMANDRO"])
-                
-                //snapshot?.data().update
-                
+
                 guard let snapshot = snapshot?.data()  else { return }
                 let userData = UserInfo.init(with: snapshot)
                 

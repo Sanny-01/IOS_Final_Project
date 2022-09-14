@@ -40,3 +40,9 @@ enum exchangeRateNames: String {
     case GELToGBP = "GELToGBP"
     case USDToEUR = "USDToEUR"
 }
+
+enum firebaseDataKeys: String {
+    case balanceInGel = "GEL"
+    case balanceInUsd = "USD"
+    case balanceInEur = "EUR"
+}
