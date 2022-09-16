@@ -88,6 +88,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        profileSettingsTableView.deselectRow(at: indexPath, animated: true)
         
         let storyboard = UIStoryboard(name: "PasswordChange", bundle: nil)
         

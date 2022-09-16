@@ -19,7 +19,7 @@ class LogInPageVC: UIViewController {
     
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
-
+    
     @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var passwordLabel: UILabel!
     
@@ -62,25 +62,28 @@ class LogInPageVC: UIViewController {
     @IBAction func logInTapped(_ sender: UIButton) {
         emptyFields = 0
         
-        let checkError =  validateFields()
-        
-        if checkError != nil {
-            
-        } else {
+        if validateFields() {
             Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { [weak self] (result, error ) in
                 
                 if error  != nil {
                     self?.showAlertWithOkButton(title: nil, message: "Email or password is incorrect. Please, try again.")
                 } else {
                     
-                    self?.setUserDefaultValues()
-                    
                     let storyboard = UIStoryboard(name: "HomePage", bundle: nil)
                     let homeVC = storyboard.instantiateViewController(withIdentifier: "home_page_vc") as? HomePageVC
                     guard let homeVC = homeVC else { return }
+//
+//                    Task {
+//                        do {
+//                        } catch {
+//                            print("Could not load user balance")
+//                        }
+//                    }
                     
                     Task {
                         do {
+                            try await self?.setUserDefaultValues()
+                            
                             let gelToUsd = try await NetworkService().fetchExchangeRate(to: "GEL", from: "USD", amount: 1.00, decodingType: CurrencyAmount.self)
                             let gelToEur = try await NetworkService().fetchExchangeRate(to: "GEL", from: "EUR", amount: 1.00, decodingType: CurrencyAmount.self)
                             let gelToGbp = try await NetworkService().fetchExchangeRate(to: "GEL", from: "GBP", amount: 1.00, decodingType: CurrencyAmount.self)
@@ -89,8 +92,6 @@ class LogInPageVC: UIViewController {
                             // If new API did not give us new data old core data will not be erased and will be used for current user
                             self?.deleteExchangeCoreData()
                             self?.setExchangeValues(gelToUsd: gelToUsd.result, gelToEur: gelToEur.result, gelToGbp: gelToGbp.result, usdToEur: usdToEur.result)
-                            
-                            print("GOTTEN ALL VALUES !!!!!!!!!")
                         } catch {
                             print(error)
                         }
@@ -98,35 +99,27 @@ class LogInPageVC: UIViewController {
                             self?.navigationController?.pushViewController(homeVC, animated: true)
                         }
                     }
-        
                 }
             }
         }
     }
     
-    func setUserDefaultValues() {
+    func setUserDefaultValues() async throws {
         guard  let userUID = Auth.auth().currentUser?.uid else { return }
-
-         Firestore.firestore().collection("users").document(userUID).getDocument { snapshot, error in
-            if error == nil {
-
-                guard let snapshot = snapshot?.data()  else { return }
-                let userData = UserInfo.init(with: snapshot)
-                
-                let defaults = UserDefaults.standard
-                
-                defaults.set(userData.username, forKey: userDefaultKeyNames.username.rawValue)
-                defaults.set(userData.email, forKey: userDefaultKeyNames.email.rawValue)
-                defaults.set(userData.id, forKey: userDefaultKeyNames.userId.rawValue)
-                
-                defaults.set(userData.GEL, forKey: userDefaultKeyNames.GEL.rawValue)
-                defaults.set(userData.USD, forKey: userDefaultKeyNames.USD.rawValue)
-                defaults.set(userData.EUR, forKey: userDefaultKeyNames.EUR.rawValue)
-                
-            } else {
-                print("Error appeared while getting user info")
-            }
-        }
+        
+        let snapshot = try await Firestore.firestore().collection("users").document(userUID).getDocument()
+        guard let snapshotData = snapshot.data()  else { return }
+        let userData = UserInfo.init(with: snapshotData)
+        
+        let defaults = UserDefaults.standard
+        
+        defaults.set(userData.username, forKey: userDefaultKeyNames.username.rawValue)
+        defaults.set(userData.email, forKey: userDefaultKeyNames.email.rawValue)
+        defaults.set(userData.id, forKey: userDefaultKeyNames.userId.rawValue)
+        
+        defaults.set(userData.GEL, forKey: userDefaultKeyNames.GEL.rawValue)
+        defaults.set(userData.USD, forKey: userDefaultKeyNames.USD.rawValue)
+        defaults.set(userData.EUR, forKey: userDefaultKeyNames.EUR.rawValue)
     }
     
     func deleteExchangeCoreData() {
@@ -156,16 +149,16 @@ class LogInPageVC: UIViewController {
         }
     }
     
-    func validateFields() -> String? {
+    func validateFields() -> Bool {
         
         emptyFields += emailTextField.validateForEmptiness(errorLabel: emailLabel)
         emptyFields += passwordTextField.validateForEmptiness(errorLabel: passwordLabel)
         
         if emptyFields != 0 {
-            return "Empty field found"
+            return false
         }
         
-        return nil
+        return true
     }
     
     func validateForEmptiness(field: UITextField, errorLabel: UILabel) {

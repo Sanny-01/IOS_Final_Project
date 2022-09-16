@@ -53,14 +53,21 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWW-zJ-srX">
-                                                <rect key="frame" x="314" y="32" width="70" height="24.5"/>
+                                                <rect key="frame" x="309" y="32" width="60" height="24.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="70" id="bGY-Jf-9m5"/>
+                                                    <constraint firstAttribute="width" constant="60" id="bGY-Jf-9m5"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fph-NQ-dPc">
+                                                <rect key="frame" x="384" y="32" width="25" height="24.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="2hd-OR-ewe"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -69,9 +76,13 @@
                                             <constraint firstItem="gB1-G5-335" firstAttribute="top" secondItem="HtV-0T-lDd" secondAttribute="bottom" constant="5" id="DrY-Tm-eDB"/>
                                             <constraint firstItem="IWW-zJ-srX" firstAttribute="centerY" secondItem="yAr-5N-EQc" secondAttribute="centerY" id="FaD-ba-nCB"/>
                                             <constraint firstAttribute="bottom" secondItem="IWW-zJ-srX" secondAttribute="bottom" constant="32" id="IId-Np-cCe"/>
+                                            <constraint firstAttribute="trailing" secondItem="fph-NQ-dPc" secondAttribute="trailing" constant="5" id="UMA-TU-5U2"/>
+                                            <constraint firstItem="fph-NQ-dPc" firstAttribute="top" secondItem="yAr-5N-EQc" secondAttribute="top" constant="32" id="atl-yh-Pgs"/>
+                                            <constraint firstAttribute="bottom" secondItem="fph-NQ-dPc" secondAttribute="bottom" constant="32" id="cEY-9N-MQQ"/>
                                             <constraint firstAttribute="bottom" secondItem="gB1-G5-335" secondAttribute="bottom" constant="15" id="fcj-uB-DVo"/>
-                                            <constraint firstAttribute="trailing" secondItem="IWW-zJ-srX" secondAttribute="trailing" constant="30" id="hfG-vp-gPf"/>
+                                            <constraint firstItem="fph-NQ-dPc" firstAttribute="leading" secondItem="IWW-zJ-srX" secondAttribute="trailing" constant="15" id="mea-61-7rI"/>
                                             <constraint firstItem="gB1-G5-335" firstAttribute="leading" secondItem="yAr-5N-EQc" secondAttribute="leading" constant="10" id="pjM-NQ-B4I"/>
+                                            <constraint firstItem="IWW-zJ-srX" firstAttribute="height" secondItem="fph-NQ-dPc" secondAttribute="height" id="rMI-cr-SDX"/>
                                             <constraint firstAttribute="bottom" secondItem="HtV-0T-lDd" secondAttribute="bottom" constant="55" id="szM-UI-AGl"/>
                                             <constraint firstItem="HtV-0T-lDd" firstAttribute="top" secondItem="yAr-5N-EQc" secondAttribute="top" constant="10" id="uJs-w2-7P4"/>
                                         </constraints>
@@ -207,7 +218,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Transfer"/>
                                 <connections>
-                                    <action selector="transferButtonTapped:" destination="FqG-X6-CtE" eventType="touchUpInside" id="Vea-7O-VAy"/>
+                                    <action selector="transferButtonTapped:" destination="FqG-X6-CtE" eventType="touchUpInside" id="QpE-TX-7K5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -229,10 +240,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="balanceLabel" destination="IWW-zJ-srX" id="XFF-Kz-7R9"/>
+                        <outlet property="currencyImageView" destination="fph-NQ-dPc" id="oyu-rV-Fhe"/>
                         <outlet property="receiverUiView" destination="5fL-qn-Cb0" id="IGk-1f-It8"/>
                         <outlet property="receiversIbanTextField" destination="qaq-1B-raE" id="mRb-9N-FSW"/>
                         <outlet property="receiversUsernameLabel" destination="I5T-8x-Wf0" id="H5h-Om-Xkz"/>
-                        <outlet property="transferAmountTextField" destination="KzI-Q6-lUq" id="lSa-Ah-muG"/>
+                        <outlet property="transferAmountTextField" destination="KzI-Q6-lUq" id="jHi-fz-vqZ"/>
                         <outlet property="transferFromTextField" destination="gB1-G5-335" id="c7h-TP-Bb4"/>
                     </connections>
                 </viewController>

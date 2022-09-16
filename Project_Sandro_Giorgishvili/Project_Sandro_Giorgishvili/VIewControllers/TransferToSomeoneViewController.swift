@@ -13,19 +13,20 @@ class TransferToSomeoneViewController: UIViewController {
     
     @IBOutlet private weak var transferFromTextField: UITextField!
     @IBOutlet private weak var transferAmountTextField: UITextField!
-    @IBOutlet weak var receiversIbanTextField: UITextField!
-    
-    @IBOutlet weak var receiverUiView: UIView!
-    @IBOutlet weak var receiversUsernameLabel: UILabel!
-    
+    @IBOutlet private weak var receiversIbanTextField: UITextField!
+    @IBOutlet private weak var receiverUiView: UIView!
+    @IBOutlet private weak var receiversUsernameLabel: UILabel!
+    @IBOutlet private weak var balanceLabel: UILabel!
+    @IBOutlet private weak var currencyImageView: UIImageView!
     
     let transferFromTextFieldBottomLine = CALayer()
     let transferAmountTextFieldBottomLine = CALayer()
     let receiversIbanBottomLine = CALayer()
-    
     let transferFromUiPicker = UIPickerView()
     
     var availableCurrencies = ["GEL", "USD", "EUR"]
+    var receiversDataSnapshot: DocumentSnapshot?
+    var defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,54 +64,38 @@ class TransferToSomeoneViewController: UIViewController {
         transferFromTextField.inputView = transferFromUiPicker
         transferFromUiPicker.delegate = self
         transferFromUiPicker.delegate = self
-        
         transferFromUiPicker.tag = 0
     }
     
     private func hideReceiverView() {
         receiverUiView.alpha = 0
     }
-    
+
     @IBAction func checkTapped(_ sender: UIButton) {
+        guard let receiversId = receiversIbanTextField.text else { return }
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        
+        if  validateForEmptiness(textField: receiversId) && checkIbanSimilarity(receiversIbanText: receiversId, currentUsersIbanText: currentUserId) {
+            Task {
+                do {
+                    guard let _ = try await getReceiversDataSnapshot(id: receiversId) else { return }
+                    print("VALIDATION SUCCEEDEED")
+                } catch {
+                    showAlertWithOkButton(title: nil, message: "Something went wrong. Please, try again later")
+                }
+            }
+        }
+    }
+    
+    @IBAction func transferButtonTapped(_ sender: UIButton) {
         guard let receiversId = receiversIbanTextField.text else { return }
         guard let transferCurrency = transferFromTextField.text else { return }
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        guard let transferAmount = transferAmountTextField.text else { return }
         
-        // move emptiness check to transfer button tap !!!!!
-        if validateForEmptiness(receiversId: receiversId, transferCurrency: transferCurrency)  && checkIbanSimilarity(receiversIbanText: receiversId, currentUsersIbanText: currentUserId) {
-            Task {
-                do {
-                    
-                    guard let receiversDataSnapshot = try await getReceiversDataSnapshot(id: receiversId) else { return }
-//                    guard let receiversData = receiversDataSnapshot.data() else { return }
-//                    var receiversBalance: Double = 0.00
-//
-//                    guard let currentUserDataSnapshot = try await getUserDataSnapshot(id: currentUserId) else { return }
-//                    guard let currentUserData = currentUserDataSnapshot.data() else { return }
-//                    var currentUsersBalance: Double = 0.00
-//
-//                    switch transferCurrency {
-//                    case firebaseDataKeys.balanceInGel.rawValue:
-//                        receiversBalance = receiversData[firebaseDataKeys.balanceInGel.rawValue] as? Double ?? 0.00
-//                        currentUsersBalance = currentUserData[firebaseDataKeys.balanceInGel.rawValue] as? Double ?? 0.00
-//                    case firebaseDataKeys.balanceInUsd.rawValue:
-//                        receiversBalance = receiversData[firebaseDataKeys.balanceInUsd.rawValue] as? Double ?? 0.00
-//                        currentUsersBalance = currentUserData[firebaseDataKeys.balanceInUsd.rawValue] as? Double ?? 0.00
-//                    case firebaseDataKeys.balanceInUsd.rawValue:
-//                        receiversBalance = receiversData[firebaseDataKeys.balanceInEur.rawValue] as? Double ?? 0.00
-//                        currentUsersBalance = currentUserData[firebaseDataKeys.balanceInEur.rawValue] as? Double ?? 0.00
-//                    default:
-//                        print("Error occured")
-//                    }
-//
-//                    if validateBalance(userBalance: currentUsersBalance, receiverBalance: receiversBalance){
-//
-//                    }
-                    
-                    print("YESS VALIDATION SUCCEEDEED")
-                } catch {
-                    print("Error occured")
-                }
+        if validateForEmptiness(textField: receiversId) && validateForEmptiness(textField: transferCurrency) && validateForEmptiness(textField: transferAmount) {
+            if checkIbanSimilarity(receiversIbanText: receiversId, currentUsersIbanText: currentUserId) {
+                requestTransaction(fromUser: currentUserId , toUser: receiversId, currency: transferCurrency, amount: transferAmount)
             }
         }
     }
@@ -134,9 +119,10 @@ class TransferToSomeoneViewController: UIViewController {
        try await Firestore.firestore().collection("users").document(id).getDocument()
     }
     
-    private func validateForEmptiness(receiversId: String, transferCurrency: String) -> Bool {
-        if receiversId.isEmpty || transferCurrency.isEmpty {
-            showAlertWithOkButton(title: nil, message: "Please fill all the fields")
+    private func validateForEmptiness(textField: String) -> Bool {
+        if textField.isEmpty {
+            showAlertWithOkButton(title: nil, message: "Please fill required fields")
+            
             return false
         }
         
@@ -153,13 +139,67 @@ class TransferToSomeoneViewController: UIViewController {
         return true
     }
     
-    func validateBalance(userBalance: Double, receiverBalance: Double) -> Bool {
+    private func validateBalance(userBalance: Double, receiverBalance: Double) -> Bool {
         if userBalance < receiverBalance {
             showAlertWithOkButton(title: nil, message: "You do not have enough money on account.")
+            
             return false
         }
         
         return true
+    }
+    
+    private func requestTransaction(fromUser: String, toUser: String, currency: String, amount: String) {
+        
+        Task {
+            do {
+                
+                guard let transferAmount = Double(amount) else { return }
+                
+                guard let receiversSnapshot = try await getReceiversDataSnapshot(id: toUser) else  { return }
+                guard let receiversData = receiversSnapshot.data() else { return }
+                let receiversBalance = Double(receiversData[currency] as? String ?? "") ?? 0.00
+                
+                
+                guard let currentUserSnapshot = try await getUserDataSnapshot(id: fromUser) else { return }
+                guard let currentUserData = currentUserSnapshot.data() else { return }
+                let currentUsersBalance = Double(currentUserData[currency] as? String ?? "") ?? 0.00
+                
+                if !validateBalance(userBalance: currentUsersBalance, receiverBalance: transferAmount) {
+                    throw TransactionError.notEnoughBalance
+                }
+                
+                try await receiversSnapshot.reference.updateData([currency: "\(round( (receiversBalance + transferAmount ) * 100 ) / 100)"])
+                try await currentUserSnapshot.reference.updateData([currency: "\(round( (currentUsersBalance - transferAmount ) * 100 ) / 100)"])
+                
+                defaults.removeObject(forKey: currency)
+                defaults.set(currentUsersBalance - transferAmount, forKey: currency)
+                
+                dismiss(animated: true)
+                showAlertWithOkButton(title: nil, message: "Successfully transfered")
+            } catch {
+                switch error.self {
+                case TransactionError.notEnoughBalance:
+                    showAlertWithOkButton(title: nil, message: "You do not have enoguh money on your balance")
+                default:
+                    showAlertWithOkButton(title: nil, message: "Could not proccess your transaction. Try again later")
+                }
+            }
+        }
+    }
+    
+    private func setCurrencyImage(currency: String) {
+        switch currency {
+        case "GEL":
+            currencyImageView.image = UIImage(systemName: "larisign.circle")
+        case "USD":
+            currencyImageView.image = UIImage(systemName: "dollarsign.circle")
+        case "EUR":
+            currencyImageView.image = UIImage(systemName: "eurosign.circle")
+        default:
+            print("Did not assign any image")
+        }
+        
     }
     
     func showReceiver(username: String) {
@@ -185,6 +225,8 @@ extension TransferToSomeoneViewController: UIPickerViewDelegate, UIPickerViewDat
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         transferFromTextField.text = availableCurrencies[row]
+        balanceLabel.text = defaults.string(forKey: availableCurrencies[row])
+        setCurrencyImage(currency: availableCurrencies[row])
         transferFromTextField.resignFirstResponder()
     }
 }

@@ -34,7 +34,7 @@
 		3BD7C5A028CE384400C08D08 /* TransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7C59F28CE384400C08D08 /* TransferCell.swift */; };
 		3BDF474528C4D8E000ABF484 /* CurrencyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF474428C4D8E000ABF484 /* CurrencyVC.swift */; };
 		3BDF474728C4DC2A00ABF484 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF474628C4DC2A00ABF484 /* CurrencyCell.swift */; };
-		3BDF474928C501E100ABF484 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF474828C501E100ABF484 /* APIError.swift */; };
+		3BDF474928C501E100ABF484 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF474828C501E100ABF484 /* Errors.swift */; };
 		3BDF474B28C5021400ABF484 /* currencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF474A28C5021400ABF484 /* currencyModel.swift */; };
 		3BDF474D28C5065300ABF484 /* NetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDF474C28C5065300ABF484 /* NetworkWorker.swift */; };
 		3BE6BA8E28CF4B5300BCDF9C /* ExchangeRates+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE6BA8C28CF4B5300BCDF9C /* ExchangeRates+CoreDataClass.swift */; };
@@ -79,7 +79,7 @@
 		3BD7C59F28CE384400C08D08 /* TransferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferCell.swift; sourceTree = "<group>"; };
 		3BDF474428C4D8E000ABF484 /* CurrencyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyVC.swift; sourceTree = "<group>"; };
 		3BDF474628C4DC2A00ABF484 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
-		3BDF474828C501E100ABF484 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		3BDF474828C501E100ABF484 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		3BDF474A28C5021400ABF484 /* currencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = currencyModel.swift; sourceTree = "<group>"; };
 		3BDF474C28C5065300ABF484 /* NetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWorker.swift; sourceTree = "<group>"; };
 		3BE6BA8C28CF4B5300BCDF9C /* ExchangeRates+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExchangeRates+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 				3B5CD491289978D3003D5923 /* HomePageModels.swift */,
 				3B5CD492289978D3003D5923 /* HomePageViewController.swift */,
 				3B5CD493289978D3003D5923 /* HomePageInteractor.swift */,
-				3BDF474828C501E100ABF484 /* APIError.swift */,
+				3BDF474828C501E100ABF484 /* Errors.swift */,
 				3BDF474A28C5021400ABF484 /* currencyModel.swift */,
 				3B2AC01B28CF46680030D98C /* ExchangeRates_CoreData.xcdatamodeld */,
 			);
@@ -388,7 +388,7 @@
 				3B5CD4A92899A497003D5923 /* PasswordChangeViewController.swift in Sources */,
 				3BECBC932897223C00ACFEC5 /* Constants.swift in Sources */,
 				3BD7C59728CD463000C08D08 /* InternalTransfersViewController.swift in Sources */,
-				3BDF474928C501E100ABF484 /* APIError.swift in Sources */,
+				3BDF474928C501E100ABF484 /* Errors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

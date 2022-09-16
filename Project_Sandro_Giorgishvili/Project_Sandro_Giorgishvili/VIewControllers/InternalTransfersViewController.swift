@@ -69,6 +69,7 @@ class InternalTransfersViewController: UIViewController {
         bottomLine.frame = CGRect(x: 0, y: textField.frame.height - 2 , width: textField.frame.width, height: 1)
         bottomLine.backgroundColor = UIColor.lightGray.cgColor
         
+        textField.clipsToBounds = true
         textField.layer.addSublayer(bottomLine)
     }
     
