@@ -32,12 +32,13 @@ class LogInPageVC: UIViewController {
         hideKeyboardWhenTappedAround()
     }
     
-    func setUpRootViewController() {
-        let controller = LogInPageVC()
-        let navigationController = UINavigationController(rootViewController: controller)
-        navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: false)
-    }
+//    func setUpRootViewController() {
+//        let controller = LogInPageVC()
+//        let navigationController = UINavigationController(rootViewController: controller)
+//        navigationController.modalPresentationStyle = .fullScreen
+//        present(navigationController, animated: false)
+//    }
+    
     @IBAction func signUpTapped(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let logInVc = storyboard.instantiateViewController(withIdentifier: "sign_up_VC")
@@ -49,15 +50,15 @@ class LogInPageVC: UIViewController {
     //        passwordTextField.removeAutoCapitalizeAndCorrection()
     //    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        navigationController?.setNavigationBarHidden(true, animated: animated)
+//    }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        navigationController?.setNavigationBarHidden(false, animated: animated)
+//    }
     
     @IBAction func logInTapped(_ sender: UIButton) {
         emptyFields = 0
@@ -66,12 +67,8 @@ class LogInPageVC: UIViewController {
             Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { [weak self] (result, error ) in
                 
                 if error  != nil {
-                    self?.showAlertWithOkButton(title: nil, message: "Email or password is incorrect. Please, try again.")
+                    self?.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.logInError)
                 } else {
-                    
-                    let storyboard = UIStoryboard(name: "HomePage", bundle: nil)
-                    let homeVC = storyboard.instantiateViewController(withIdentifier: "home_page_vc") as? HomePageVC
-                    guard let homeVC = homeVC else { return }
 //
 //                    Task {
 //                        do {
@@ -95,8 +92,20 @@ class LogInPageVC: UIViewController {
                         } catch {
                             print(error)
                         }
-                        DispatchQueue.main.async { [weak self] in
-                            self?.navigationController?.pushViewController(homeVC, animated: true)
+                        DispatchQueue.main.async {
+                            let storyboard = UIStoryboard(name: "HomePage", bundle: nil)
+                            let homeVC = storyboard.instantiateViewController(withIdentifier: "home_page_vc") as? HomePageVC
+                            guard let homeVC = homeVC else { return }
+                            
+                            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                            guard let window = windowScene?.windows.first else { return }
+                            let navigationController = UINavigationController(rootViewController: homeVC)
+                            
+                            window.rootViewController = navigationController
+                            window.makeKeyAndVisible()
+                            
+//                            let navigation = UINavigationController(rootViewController: homeVC)
+//                            navigation.pushViewController(homeVC, animated: true)
                         }
                     }
                 }
@@ -113,13 +122,13 @@ class LogInPageVC: UIViewController {
         
         let defaults = UserDefaults.standard
         
-        defaults.set(userData.username, forKey: userDefaultKeyNames.username.rawValue)
-        defaults.set(userData.email, forKey: userDefaultKeyNames.email.rawValue)
-        defaults.set(userData.id, forKey: userDefaultKeyNames.userId.rawValue)
+        defaults.set(userData.username, forKey: Constants.userDefaultsKey.username.rawValue)
+        defaults.set(userData.email, forKey: Constants.userDefaultsKey.email.rawValue)
+        defaults.set(userData.id, forKey: Constants.userDefaultsKey.userId.rawValue)
         
-        defaults.set(userData.GEL, forKey: userDefaultKeyNames.GEL.rawValue)
-        defaults.set(userData.USD, forKey: userDefaultKeyNames.USD.rawValue)
-        defaults.set(userData.EUR, forKey: userDefaultKeyNames.EUR.rawValue)
+        defaults.set(userData.GEL, forKey: Constants.userDefaultsKey.GEL.rawValue)
+        defaults.set(userData.USD, forKey: Constants.userDefaultsKey.USD.rawValue)
+        defaults.set(userData.EUR, forKey: Constants.userDefaultsKey.EUR.rawValue)
     }
     
     func deleteExchangeCoreData() {
@@ -167,11 +176,11 @@ class LogInPageVC: UIViewController {
         // if textfield is empty
         if textFieldText == "" {
             errorLabel.alpha = 1
-            errorLabel.text = Constants.emptyFieldErrorMessage
+            errorLabel.text = Constants.ErrorMessages.emptyField
             emptyFields += 1
         } else {
             // if textfield is not empty check that there is no passwords do not match error
-            if errorLabel.text != Constants.passwordsDoNotMatchMessage {
+            if errorLabel.text != Constants.ErrorMessages.passwordsDoNotMatch {
                 errorLabel.alpha = 0
             }
         }
