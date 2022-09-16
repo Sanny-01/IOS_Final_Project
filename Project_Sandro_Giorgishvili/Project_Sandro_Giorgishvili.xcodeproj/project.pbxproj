@@ -23,10 +23,17 @@
 		3B5CD499289978D3003D5923 /* HomePageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5CD493289978D3003D5923 /* HomePageInteractor.swift */; };
 		3B5CD4A92899A497003D5923 /* PasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5CD4A82899A497003D5923 /* PasswordChangeViewController.swift */; };
 		3B74759E2898453700BE3AD5 /* HomePageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B74759D2898453700BE3AD5 /* HomePageVC.swift */; };
+		3B89B89428D4E35B005143C0 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89B88E28D4E35B005143C0 /* LoginPresenter.swift */; };
+		3B89B89528D4E35B005143C0 /* LoginWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89B88F28D4E35B005143C0 /* LoginWorker.swift */; };
+		3B89B89628D4E35B005143C0 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89B89028D4E35B005143C0 /* LoginRouter.swift */; };
+		3B89B89728D4E35B005143C0 /* LoginModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89B89128D4E35B005143C0 /* LoginModels.swift */; };
+		3B89B89828D4E35B005143C0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89B89228D4E35B005143C0 /* LoginViewController.swift */; };
+		3B89B89928D4E35B005143C0 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B89B89328D4E35B005143C0 /* LoginInteractor.swift */; };
 		3BBFA50B28CAB2770092B944 /* PasswordChange.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFA50A28CAB2770092B944 /* PasswordChange.storyboard */; };
 		3BBFA50D28CABA620092B944 /* HomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFA50C28CABA620092B944 /* HomePage.storyboard */; };
 		3BBFA50F28CAC03E0092B944 /* CurrencyBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFA50E28CAC03E0092B944 /* CurrencyBoard.storyboard */; };
 		3BBFA51228CBECA40092B944 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBFA51128CBECA40092B944 /* UserCredentials.swift */; };
+		3BD22D1628D517FE004DF6FD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD22D1528D517FE004DF6FD /* Helper.swift */; };
 		3BD7C59728CD463000C08D08 /* InternalTransfersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7C59528CD463000C08D08 /* InternalTransfersViewController.swift */; };
 		3BD7C59A28CD467D00C08D08 /* TransfersPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7C59928CD467D00C08D08 /* TransfersPage.storyboard */; };
 		3BD7C59C28CE0ACF00C08D08 /* InternalTransfers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD7C59B28CE0ACF00C08D08 /* InternalTransfers.storyboard */; };
@@ -68,10 +75,17 @@
 		3B5CD493289978D3003D5923 /* HomePageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageInteractor.swift; sourceTree = "<group>"; };
 		3B5CD4A82899A497003D5923 /* PasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeViewController.swift; sourceTree = "<group>"; };
 		3B74759D2898453700BE3AD5 /* HomePageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageVC.swift; sourceTree = "<group>"; };
+		3B89B88E28D4E35B005143C0 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		3B89B88F28D4E35B005143C0 /* LoginWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWorker.swift; sourceTree = "<group>"; };
+		3B89B89028D4E35B005143C0 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		3B89B89128D4E35B005143C0 /* LoginModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModels.swift; sourceTree = "<group>"; };
+		3B89B89228D4E35B005143C0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3B89B89328D4E35B005143C0 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		3BBFA50A28CAB2770092B944 /* PasswordChange.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordChange.storyboard; sourceTree = "<group>"; };
 		3BBFA50C28CABA620092B944 /* HomePage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomePage.storyboard; sourceTree = "<group>"; };
 		3BBFA50E28CAC03E0092B944 /* CurrencyBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CurrencyBoard.storyboard; sourceTree = "<group>"; };
 		3BBFA51128CBECA40092B944 /* UserCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
+		3BD22D1528D517FE004DF6FD /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		3BD7C59528CD463000C08D08 /* InternalTransfersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalTransfersViewController.swift; sourceTree = "<group>"; };
 		3BD7C59928CD467D00C08D08 /* TransfersPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TransfersPage.storyboard; sourceTree = "<group>"; };
 		3BD7C59B28CE0ACF00C08D08 /* InternalTransfers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InternalTransfers.storyboard; sourceTree = "<group>"; };
@@ -146,6 +160,27 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		3B89B88C28D4E33A005143C0 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				3B89B88D28D4E340005143C0 /* Login */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		3B89B88D28D4E340005143C0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3B89B89228D4E35B005143C0 /* LoginViewController.swift */,
+				3B89B88E28D4E35B005143C0 /* LoginPresenter.swift */,
+				3B89B88F28D4E35B005143C0 /* LoginWorker.swift */,
+				3B89B89028D4E35B005143C0 /* LoginRouter.swift */,
+				3B89B89128D4E35B005143C0 /* LoginModels.swift */,
+				3B89B89328D4E35B005143C0 /* LoginInteractor.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		3BBFA51028CBE5900092B944 /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +220,7 @@
 		3BECBC762896EF3500ACFEC5 /* Project_Sandro_Giorgishvili */ = {
 			isa = PBXGroup;
 			children = (
+				3B89B88C28D4E33A005143C0 /* Scenes */,
 				3B2AC01E28CF48300030D98C /* CoreData */,
 				3BECBC772896EF3500ACFEC5 /* AppDelegate.swift */,
 				3BECBC792896EF3500ACFEC5 /* SceneDelegate.swift */,
@@ -208,6 +244,7 @@
 				3BDF474828C501E100ABF484 /* Errors.swift */,
 				3BDF474A28C5021400ABF484 /* currencyModel.swift */,
 				3B2AC01B28CF46680030D98C /* ExchangeRates_CoreData.xcdatamodeld */,
+				3BD22D1528D517FE004DF6FD /* Helper.swift */,
 			);
 			path = Project_Sandro_Giorgishvili;
 			sourceTree = "<group>";
@@ -367,8 +404,11 @@
 				3BBFA51228CBECA40092B944 /* UserCredentials.swift in Sources */,
 				3B3ED61B28CA4C350036D760 /* ProfileSettingsCell.swift in Sources */,
 				3BECBC902896F3A500ACFEC5 /* LogInPageVC.swift in Sources */,
+				3B89B89928D4E35B005143C0 /* LoginInteractor.swift in Sources */,
+				3B89B89628D4E35B005143C0 /* LoginRouter.swift in Sources */,
 				3BECBC7C2896EF3500ACFEC5 /* ViewController.swift in Sources */,
 				3B05DE5A28D263D5006CD33B /* TransferToSomeoneViewController.swift in Sources */,
+				3B89B89728D4E35B005143C0 /* LoginModels.swift in Sources */,
 				3BDF474B28C5021400ABF484 /* currencyModel.swift in Sources */,
 				3B5CD499289978D3003D5923 /* HomePageInteractor.swift in Sources */,
 				3BD7C59E28CE36A900C08D08 /* TransfersViewController.swift in Sources */,
@@ -377,18 +417,22 @@
 				3B74759E2898453700BE3AD5 /* HomePageVC.swift in Sources */,
 				3B3ED61828CA48230036D760 /* ProfileVC.swift in Sources */,
 				3BDF474D28C5065300ABF484 /* NetworkWorker.swift in Sources */,
+				3B89B89428D4E35B005143C0 /* LoginPresenter.swift in Sources */,
 				3BDF474528C4D8E000ABF484 /* CurrencyVC.swift in Sources */,
 				3BECBC7A2896EF3500ACFEC5 /* SceneDelegate.swift in Sources */,
+				3BD22D1628D517FE004DF6FD /* Helper.swift in Sources */,
 				3B5CD495289978D3003D5923 /* HomePageWorker.swift in Sources */,
 				3B5CD498289978D3003D5923 /* HomePageViewController.swift in Sources */,
 				3B5CD497289978D3003D5923 /* HomePageModels.swift in Sources */,
 				3B5CD496289978D3003D5923 /* HomePageRouter.swift in Sources */,
 				3BE6BA8E28CF4B5300BCDF9C /* ExchangeRates+CoreDataClass.swift in Sources */,
+				3B89B89828D4E35B005143C0 /* LoginViewController.swift in Sources */,
 				3B2AC01D28CF46680030D98C /* ExchangeRates_CoreData.xcdatamodeld in Sources */,
 				3B5CD4A92899A497003D5923 /* PasswordChangeViewController.swift in Sources */,
 				3BECBC932897223C00ACFEC5 /* Constants.swift in Sources */,
 				3BD7C59728CD463000C08D08 /* InternalTransfersViewController.swift in Sources */,
 				3BDF474928C501E100ABF484 /* Errors.swift in Sources */,
+				3B89B89528D4E35B005143C0 /* LoginWorker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

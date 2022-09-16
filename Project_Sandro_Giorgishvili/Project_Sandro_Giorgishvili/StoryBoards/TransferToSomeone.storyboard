@@ -53,12 +53,12 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWW-zJ-srX">
-                                                <rect key="frame" x="309" y="32" width="60" height="24.5"/>
+                                                <rect key="frame" x="304" y="32" width="70" height="24.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="60" id="bGY-Jf-9m5"/>
+                                                    <constraint firstAttribute="width" constant="70" id="bGY-Jf-9m5"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -80,7 +80,7 @@
                                             <constraint firstItem="fph-NQ-dPc" firstAttribute="top" secondItem="yAr-5N-EQc" secondAttribute="top" constant="32" id="atl-yh-Pgs"/>
                                             <constraint firstAttribute="bottom" secondItem="fph-NQ-dPc" secondAttribute="bottom" constant="32" id="cEY-9N-MQQ"/>
                                             <constraint firstAttribute="bottom" secondItem="gB1-G5-335" secondAttribute="bottom" constant="15" id="fcj-uB-DVo"/>
-                                            <constraint firstItem="fph-NQ-dPc" firstAttribute="leading" secondItem="IWW-zJ-srX" secondAttribute="trailing" constant="15" id="mea-61-7rI"/>
+                                            <constraint firstItem="fph-NQ-dPc" firstAttribute="leading" secondItem="IWW-zJ-srX" secondAttribute="trailing" constant="10" id="mea-61-7rI"/>
                                             <constraint firstItem="gB1-G5-335" firstAttribute="leading" secondItem="yAr-5N-EQc" secondAttribute="leading" constant="10" id="pjM-NQ-B4I"/>
                                             <constraint firstItem="IWW-zJ-srX" firstAttribute="height" secondItem="fph-NQ-dPc" secondAttribute="height" id="rMI-cr-SDX"/>
                                             <constraint firstAttribute="bottom" secondItem="HtV-0T-lDd" secondAttribute="bottom" constant="55" id="szM-UI-AGl"/>

@@ -57,9 +57,9 @@ class SignUpVC: UIViewController {
                         let errCode = AuthErrorCode(_nsError: err)
                         switch errCode.code {
                         case .emailAlreadyInUse:
-                            self.showAlertWithOkButton(title: nil, message: "Email is already registered")
+                            self.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.emailAlreadyRegistered)
                         case .invalidEmail:
-                            self.showAlertWithOkButton(title: nil, message: "Please type a valid email address")
+                            self.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.invalidEmailAddress)
                         default:
                             self.showAlertWithOkButton(title: nil, message: "An error occured")
                         }
@@ -116,7 +116,7 @@ class SignUpVC: UIViewController {
             return "Empty field found"
         }
         
-        // TODO: remove foce unwrap she debilo shen
+        // TODO: remove foce unwrap
         // can force unwrap because it was checked for emptiness previously
         let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let repeatPassword = repeatPasswordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -164,11 +164,11 @@ class SignUpVC: UIViewController {
         let repeatPassword = repeatPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? " "
         
         if password != repeatPassword {
-            repeatPasswordLabel.text =  Constants.passwordsDoNotMatchMessage
+            repeatPasswordLabel.text =  Constants.ErrorMessages.passwordsDoNotMatch
             repeatPasswordLabel.alpha = 1
             passwordsDoNotMatch = true
         } else {
-            repeatPasswordLabel.text = Constants.emptyFieldErrorMessage
+            repeatPasswordLabel.text = Constants.ErrorMessages.emptyField
             repeatPasswordLabel.alpha = 0
             passwordsDoNotMatch = false
         }
@@ -177,7 +177,7 @@ class SignUpVC: UIViewController {
     func checkIfPasswordsMatch(password: String, repeatPassword: String) {
         if password != repeatPassword {
             passwordsDoNotMatch = true
-            repeatPasswordLabel.text = Constants.passwordsDoNotMatchMessage
+            repeatPasswordLabel.text = Constants.ErrorMessages.passwordsDoNotMatch
             repeatPasswordLabel.alpha = 1
         } else {
             passwordsDoNotMatch = false
@@ -194,12 +194,12 @@ extension UITextField {
         // if textfield is empty
         if textFieldText == "" {
             errorLabel.alpha = 1
-            errorLabel.text = Constants.emptyFieldErrorMessage
+            errorLabel.text = Constants.ErrorMessages.emptyField
             
             return 1
         } else {
             // if textfield is not empty check that there is no passwords do not match error
-            if errorLabel.text != Constants.passwordsDoNotMatchMessage {
+            if errorLabel.text != Constants.ErrorMessages.passwordsDoNotMatch {
                 errorLabel.alpha = 0
             }
             

@@ -80,6 +80,7 @@ class NetworkService {
     func fetchExchangeRate<T: Decodable>(to: String, from: String, amount: Double, decodingType: T.Type) async throws -> T {
         
         let baseUrl = "https://api.apilayer.com/exchangerates_data/convert?"
+//        let apiKey = "3kJamQMdmqGI76HLOM6zGxWvOSgwWXnx"
         let apiKey = "1"
         
         var urlComponent = URLComponents(string: baseUrl)

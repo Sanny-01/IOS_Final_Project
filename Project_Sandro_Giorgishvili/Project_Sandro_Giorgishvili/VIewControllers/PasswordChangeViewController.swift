@@ -159,19 +159,19 @@ class PasswordChangeViewController: UIViewController {
             
             user?.reauthenticate(with: credential, completion: { (result, error) in
                 if error != nil{
-                    self.showAlertWithOkButton(title: "Authorization Error", message: "Password is not correct! Please, try again.")
+                    self.showAlertWithOkButton(title: "Authorization Error", message: Constants.ErrorMessages.UserRegistration.incorrectPassword)
                 }
                 else{
                     
                     // check if current password is the same as new one
                     if currentPassword == newPassword {
-                        self.showAlertWithOkButton(title: nil, message: "New password can not be the same as current.")
+                        self.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.UserRegistration.samePasswords)
                     }
                     else {
                         Auth.auth().currentUser?.updatePassword(to: newPassword) { error in
                             
                             if error != nil {
-                                self.showAlertWithOkButton(title: nil, message: "An error occured. Please try again later.")
+                                self.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.generalError)
                             }
                             else {
                                 // move user to home page
@@ -194,22 +194,17 @@ class PasswordChangeViewController: UIViewController {
         
         guard let newPassword = newPasswordTextField.text else { return }
         
-        let lowercaseExpression = "^(?=.*[a-z]).{1,}$"
-        let uppercaseExpression = "^(?=.*[A-Z]).{1,}$"
-        let symbolExpression = "^(?=.*[$@$!%*#?&]).{1,}$"
-        let numberExpression = "^(?=.*[0-9]).{1,}$"
+        passwordCriteria += checkPasswordWithExpression(expression: Constants.Regex.mustContainLowercase, password: newPassword) ? 1 : 0
+        lowercaseLetterCriteriaLabel.textColor = checkPasswordWithExpression(expression: Constants.Regex.mustContainLowercase, password: newPassword) ? UIColor.systemBlue : UIColor.systemGray
         
-        passwordCriteria += checkPasswordWithExpression(expression: lowercaseExpression, password: newPassword) ? 1 : 0
-        lowercaseLetterCriteriaLabel.textColor = checkPasswordWithExpression(expression: lowercaseExpression, password: newPassword) ? UIColor.systemBlue : UIColor.systemGray
+        passwordCriteria += checkPasswordWithExpression(expression: Constants.Regex.mustContainUppercase, password: newPassword) ? 1 : 0
+        uppercaseLetterCriteriaLabel.textColor = checkPasswordWithExpression(expression: Constants.Regex.mustContainUppercase, password: newPassword) ? UIColor.systemBlue : UIColor.systemGray
         
-        passwordCriteria += checkPasswordWithExpression(expression: uppercaseExpression, password: newPassword) ? 1 : 0
-        uppercaseLetterCriteriaLabel.textColor = checkPasswordWithExpression(expression: uppercaseExpression, password: newPassword) ? UIColor.systemBlue : UIColor.systemGray
+        passwordCriteria += checkPasswordWithExpression(expression: Constants.Regex.mustContainSymbol, password: newPassword) ? 1 : 0
+        specialCharacterCriteriaLabel.textColor = checkPasswordWithExpression(expression: Constants.Regex.mustContainSymbol, password: newPassword) ? UIColor.systemBlue : UIColor.systemGray
         
-        passwordCriteria += checkPasswordWithExpression(expression: symbolExpression, password: newPassword) ? 1 : 0
-        specialCharacterCriteriaLabel.textColor = checkPasswordWithExpression(expression: symbolExpression, password: newPassword) ? UIColor.systemBlue : UIColor.systemGray
-        
-        passwordCriteria += checkPasswordWithExpression(expression: numberExpression, password: newPassword) ? 1 : 0
-        numberCriteriaLabel.textColor = checkPasswordWithExpression(expression: numberExpression, password: newPassword) ? UIColor.systemBlue : UIColor.systemGray
+        passwordCriteria += checkPasswordWithExpression(expression: Constants.Regex.mustContainNumber, password: newPassword) ? 1 : 0
+        numberCriteriaLabel.textColor = checkPasswordWithExpression(expression: Constants.Regex.mustContainNumber, password: newPassword) ? UIColor.systemBlue : UIColor.systemGray
     }
     
     func checkPasswordWithExpression(expression: String, password: String) -> Bool {
@@ -223,11 +218,11 @@ class PasswordChangeViewController: UIViewController {
         guard let repeatPassword = repeatPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
         
         if password != repeatPassword {
-            repeatPasswordErrorLabel.text =  Constants.passwordsDoNotMatchMessage
+            repeatPasswordErrorLabel.text =  Constants.ErrorMessages.passwordsDoNotMatch
             repeatPasswordErrorLabel.alpha = 1
             passwordsDoNotMatch = true
         } else {
-            repeatPasswordErrorLabel.text = Constants.emptyFieldErrorMessage
+            repeatPasswordErrorLabel.text = Constants.ErrorMessages.emptyField
             repeatPasswordErrorLabel.alpha = 0
             passwordsDoNotMatch = false
         }
@@ -267,7 +262,7 @@ class PasswordChangeViewController: UIViewController {
     func checkIfPasswordsMatch(password: String, repeatPassword: String) {
         if password != repeatPassword {
             passwordsDoNotMatch = true
-            repeatPasswordErrorLabel.text = Constants.passwordsDoNotMatchMessage
+            repeatPasswordErrorLabel.text = Constants.ErrorMessages.passwordsDoNotMatch
             repeatPasswordErrorLabel.alpha = 1
         } else {
             passwordsDoNotMatch = false

@@ -85,9 +85,9 @@ class HomePageVC: UIViewController {
     func getandSetUserData() {
         balanceView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: .wetAsphalt), animation: nil, transition: .crossDissolve(0.25))
         
-        self.totalBalanceLbl.text = defaults.string(forKey: userDefaultKeyNames.GEL.rawValue)
-        self.balanceInUSDLbl.text = defaults.string(forKey: userDefaultKeyNames.USD.rawValue)
-        self.balanceInEURLbl.text = defaults.string(forKey: userDefaultKeyNames.EUR.rawValue)
+        self.totalBalanceLbl.text = defaults.string(forKey: Constants.userDefaultsKey.GEL.rawValue)
+        self.balanceInUSDLbl.text = defaults.string(forKey: Constants.userDefaultsKey.USD.rawValue)
+        self.balanceInEURLbl.text = defaults.string(forKey: Constants.userDefaultsKey.EUR.rawValue)
         
         self.balanceView.stopSkeletonAnimation()
         self.balanceView.hideSkeleton()

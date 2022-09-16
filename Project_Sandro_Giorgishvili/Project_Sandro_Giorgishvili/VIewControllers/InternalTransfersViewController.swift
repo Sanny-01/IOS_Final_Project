@@ -74,9 +74,9 @@ class InternalTransfersViewController: UIViewController {
     }
     
     func getUserBalance() {
-        balanceInGel = defaults.double(forKey: userDefaultKeyNames.GEL.rawValue)
-        balanceInUsd = defaults.double(forKey: userDefaultKeyNames.USD.rawValue)
-        balanceInEur = defaults.double(forKey: userDefaultKeyNames.EUR.rawValue)
+        balanceInGel = defaults.double(forKey: Constants.userDefaultsKey.GEL.rawValue)
+        balanceInUsd = defaults.double(forKey: Constants.userDefaultsKey.USD.rawValue)
+        balanceInEur = defaults.double(forKey: Constants.userDefaultsKey.EUR.rawValue)
     }
     
     func setUpPickers() {
@@ -209,7 +209,7 @@ class InternalTransfersViewController: UIViewController {
                 }
             }
             else {
-                showAlertWithOkButton(title: nil, message: "You do not have enough money on balance.")
+                showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.notEnoughMoney)
             }
         }
     }
@@ -217,11 +217,11 @@ class InternalTransfersViewController: UIViewController {
     func validateForEmptiness() -> Bool {
         if fromTextField.text?.isEmpty ?? true || toTextField.text?.isEmpty ?? true {
             clearBuyAndSell()
-            showAlertWithOkButton(title: nil, message: "Please select currencies")
+            showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.currienciesNotSelected)
             return false
         } else if buyTextField.text?.isEmpty ?? true || sellTextField.text?.isEmpty ?? true {
             clearBuyAndSell()
-            showAlertWithOkButton(title: nil, message: "Please select amount to sell")
+            showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.sellAmountNotEntered)
             return false
         }
         // if validations are successfull and user has enered amount already refresh it
@@ -257,8 +257,9 @@ class InternalTransfersViewController: UIViewController {
     }
     
     private func updateUserDefaultValuesForBalance(key1: String, value1: Double, key2: String, value2: Double) {
-        defaults.set(value1, forKey:key1)
-        defaults.set(value2, forKey: key2)
+        
+        defaults.set(value1, forKey: Helper.returnUserDefaultsKey(forText: key1))
+        defaults.set(value2, forKey: Helper.returnUserDefaultsKey(forText: key2))
     }
 }
 
@@ -293,7 +294,7 @@ extension InternalTransfersViewController: UIPickerViewDataSource, UIPickerViewD
                 balanceForToLbl.text = ""
                 
             }
-            balanceForFromLbl.text = "\(defaults.double(forKey:availableCurrencies[row]))"
+            balanceForFromLbl.text = "\(defaults.double(forKey: Helper.returnUserDefaultsKey(forText: availableCurrencies[row])))"
         case 1:
             toTextField.text = availableCurrencies[row]
             toTextField.resignFirstResponder()
@@ -302,7 +303,7 @@ extension InternalTransfersViewController: UIPickerViewDataSource, UIPickerViewD
                 fromTextField.text = ""
                 balanceForFromLbl.text = ""
             }
-            balanceForToLbl.text = "\(defaults.double(forKey:availableCurrencies[row]))"
+            balanceForToLbl.text = "\(defaults.double(forKey: Helper.returnUserDefaultsKey(forText: availableCurrencies[row])))"
 
         default:
             print("Error occured")

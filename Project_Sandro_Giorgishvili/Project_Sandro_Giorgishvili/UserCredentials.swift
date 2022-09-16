@@ -25,24 +25,10 @@ struct UserInfo {
     }
 }
 
-enum userDefaultKeyNames: String {
-    case username = "username"
-    case email = "email"
-    case userId = "userId"
-    case GEL = "GEL"
-    case USD = "USD"
-    case EUR = "EUR"
-}
-
-enum exchangeRateNames: String {
-    case GELToUSD = "GELToUSD"
-    case GELToEUR = "GELToEUR"
-    case GELToGBP = "GELToGBP"
-    case USDToEUR = "USDToEUR"
-}
-
-enum firebaseDataKeys: String {
-    case balanceInGel = "GEL"
-    case balanceInUsd = "USD"
-    case balanceInEur = "EUR"
+enum UserInformation {
+    enum firebaseDataKeys: String {
+        case GEL = "GEL"
+        case USD = "USD"
+        case EUR = "EUR"
+    }
 }

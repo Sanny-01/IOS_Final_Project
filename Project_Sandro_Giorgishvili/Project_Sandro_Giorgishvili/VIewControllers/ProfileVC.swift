@@ -29,9 +29,8 @@ class ProfileVC: UIViewController {
     }
     
     func setUpArrayOfUserInfo() {
-        
-        settingNames.append(defaults.string(forKey: userDefaultKeyNames.username.rawValue) ?? "Not found")
-        settingNames.append(defaults.string(forKey: userDefaultKeyNames.email.rawValue) ?? "Not found")
+        settingNames.append(defaults.string(forKey: Constants.userDefaultsKey.username.rawValue) ?? "Not found")
+        settingNames.append(defaults.string(forKey: Constants.userDefaultsKey.email.rawValue) ?? "Not found")
         settingNames.append("Change Password")
     }
     
@@ -50,22 +49,22 @@ class ProfileVC: UIViewController {
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             guard let window = windowScene?.windows.first else { return }
             let navigationController = UINavigationController(rootViewController: logInVC)
-            UIView.transition(with: window, duration: 0.2) {
-                window.rootViewController = navigationController
-                window.makeKeyAndVisible()
-            }
+            // UIView.transition(with: window, duration: 0.2) {
+            window.rootViewController = navigationController
+            window.makeKeyAndVisible()
+            
         } catch let signOutError {
             showAlertWithOkButton(title: nil, message: signOutError.localizedDescription)
         }
     }
     
     func removeUserDefaults() {
-        defaults.removeObject(forKey: userDefaultKeyNames.username.rawValue)
-        defaults.removeObject(forKey: userDefaultKeyNames.email.rawValue)
-        defaults.removeObject(forKey: userDefaultKeyNames.userId.rawValue)
-        defaults.removeObject(forKey: userDefaultKeyNames.GEL.rawValue)
-        defaults.removeObject(forKey: userDefaultKeyNames.USD.rawValue)
-        defaults.removeObject(forKey: userDefaultKeyNames.EUR.rawValue)
+        defaults.removeObject(forKey: Constants.userDefaultsKey.username.rawValue)
+        defaults.removeObject(forKey: Constants.userDefaultsKey.email.rawValue)
+        defaults.removeObject(forKey: Constants.userDefaultsKey.userId.rawValue)
+        defaults.removeObject(forKey: Constants.userDefaultsKey.GEL.rawValue)
+        defaults.removeObject(forKey: Constants.userDefaultsKey.USD.rawValue)
+        defaults.removeObject(forKey: Constants.userDefaultsKey.EUR.rawValue)
     }
 }
 

@@ -81,7 +81,7 @@ class TransferToSomeoneViewController: UIViewController {
                     guard let _ = try await getReceiversDataSnapshot(id: receiversId) else { return }
                     print("VALIDATION SUCCEEDEED")
                 } catch {
-                    showAlertWithOkButton(title: nil, message: "Something went wrong. Please, try again later")
+                    showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.generalError)
                 }
             }
         }
@@ -105,7 +105,7 @@ class TransferToSomeoneViewController: UIViewController {
         
         guard let snapshotData = snapshot.data()  else {
             hideReceiverView()
-            showAlertWithOkButton(title: nil, message: "Could not find a user with given IBAN code")
+            showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.incorrectIbanCode)
             return nil
         }
         
@@ -131,7 +131,7 @@ class TransferToSomeoneViewController: UIViewController {
     
     private func checkIbanSimilarity(receiversIbanText: String, currentUsersIbanText: String) -> Bool {
         if receiversIbanText == currentUsersIbanText {
-            showAlertWithOkButton(title: nil, message: "You can not add your account as receiver.")
+            showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.ownIbanCodeEntered)
             
             return false
         }
@@ -141,7 +141,7 @@ class TransferToSomeoneViewController: UIViewController {
     
     private func validateBalance(userBalance: Double, receiverBalance: Double) -> Bool {
         if userBalance < receiverBalance {
-            showAlertWithOkButton(title: nil, message: "You do not have enough money on account.")
+            showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.notEnoughMoney)
             
             return false
         }
@@ -169,21 +169,19 @@ class TransferToSomeoneViewController: UIViewController {
                     throw TransactionError.notEnoughBalance
                 }
                 
-                try await receiversSnapshot.reference.updateData([currency: "\(round( (receiversBalance + transferAmount ) * 100 ) / 100)"])
-                try await currentUserSnapshot.reference.updateData([currency: "\(round( (currentUsersBalance - transferAmount ) * 100 ) / 100)"])
+                let currencyKeyForUserDefaults = Helper.returnUserDefaultsKey(forText: currency)
+                let currrencyKeyForFirebase = Helper.returnFirebaseKey(forText: currency)
+                        
+                try await receiversSnapshot.reference.updateData([currrencyKeyForFirebase: "\(round( (receiversBalance + transferAmount ) * 100.0 ) / 100.0)"])
+                try await currentUserSnapshot.reference.updateData([currrencyKeyForFirebase: "\(round( (currentUsersBalance - transferAmount ) * 100.0 ) / 100.0)"])
                 
-                defaults.removeObject(forKey: currency)
-                defaults.set(currentUsersBalance - transferAmount, forKey: currency)
+                defaults.removeObject(forKey: currencyKeyForUserDefaults)
+                defaults.set(currentUsersBalance - transferAmount, forKey: currencyKeyForUserDefaults)
                 
                 dismiss(animated: true)
-                showAlertWithOkButton(title: nil, message: "Successfully transfered")
+                showAlertWithOkButton(title: nil, message: Constants.SuccessMessages.TransferSuccess.successfullTransfer)
             } catch {
-                switch error.self {
-                case TransactionError.notEnoughBalance:
-                    showAlertWithOkButton(title: nil, message: "You do not have enoguh money on your balance")
-                default:
-                    showAlertWithOkButton(title: nil, message: "Could not proccess your transaction. Try again later")
-                }
+                    showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.transactionProccessFailed )
             }
         }
     }
@@ -225,7 +223,7 @@ extension TransferToSomeoneViewController: UIPickerViewDelegate, UIPickerViewDat
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         transferFromTextField.text = availableCurrencies[row]
-        balanceLabel.text = defaults.string(forKey: availableCurrencies[row])
+        balanceLabel.text = defaults.string(forKey: Helper.returnUserDefaultsKey(forText: availableCurrencies[row]))
         setCurrencyImage(currency: availableCurrencies[row])
         transferFromTextField.resignFirstResponder()
     }
