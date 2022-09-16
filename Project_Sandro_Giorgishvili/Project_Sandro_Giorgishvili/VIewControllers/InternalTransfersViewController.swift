@@ -46,18 +46,11 @@ class InternalTransfersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpTitle()
         setUpTextFields()
         getUserBalance()
         getExchangeValues()
         setUpPickers()
     }
-    
-    private func setUpTitle() {
-        navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Internal Transfer"
-    }
-    
     
     func setUpTextFields() {
         setUpTextFieldBottomLine(textField: sellTextField, bottomLine: sellTextFieldBottomLine)
@@ -243,9 +236,8 @@ class InternalTransfersViewController: UIViewController {
     
     private func setBuyAmount() {
         guard let desiredCurrency = returnDesiredCurrency() else { return }
-        guard let sellAmountText = sellTextField.text else { return }
         // if value becomes zero
-        guard let sellAmount = Double(sellAmountText) else {
+        guard let sellAmount = Double(sellTextField.text ?? "") else {
             buyTextField.text = ""
             return
         }
@@ -255,8 +247,7 @@ class InternalTransfersViewController: UIViewController {
     
     private func setSellAmount() {
         guard let desiredCurrency = returnDesiredCurrency() else { return }
-        guard let buyAmountTExt = buyTextField.text else { return }
-        guard let buyAmount = Double(buyAmountTExt) else {
+        guard let buyAmount = Double(buyTextField.text ?? "") else {
             sellTextField.text = ""
             return
         }
