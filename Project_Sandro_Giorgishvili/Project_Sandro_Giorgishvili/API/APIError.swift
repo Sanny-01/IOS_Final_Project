@@ -12,7 +12,3 @@ enum ApiError: Error {
     case httpError
     case decodingError
 }
-
-enum TransactionError: Error {
-    case notEnoughBalance
-}

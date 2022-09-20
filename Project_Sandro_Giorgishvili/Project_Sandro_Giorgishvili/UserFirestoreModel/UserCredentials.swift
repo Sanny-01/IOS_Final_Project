@@ -7,28 +7,38 @@
 
 import Foundation
 
-struct UserInfo {
+struct UserCredentials {
     let username: String
     let email: String
     let id: String
-    let GEL: Double
-    let USD: Double
-    let EUR: Double
     
     init(with dictionary: Dictionary<String, Any>) {
         self.username = dictionary["username"] as? String ?? ""
         self.email = dictionary["email"] as? String ?? ""
         self.id = dictionary["userId"] as? String ?? ""
-        self.GEL = Double(dictionary["GEL"] as? String ?? "") ?? 0.00
-        self.USD = Double(dictionary["USD"] as? String ?? "") ?? 0.00
-        self.EUR = Double(dictionary["EUR"] as? String ?? "") ?? 0.00
+    }
+}
+
+struct UserBalance {
+    let GEL: Double
+    let USD: Double
+    let EUR: Double
+    
+    init(with dictionary: Dictionary<String, Any>) {
+        self.GEL = dictionary["GEL"] as? Double ?? 0.00
+        self.USD = dictionary["USD"] as? Double ?? 0.00
+        self.EUR = dictionary["EUR"] as? Double ?? 0.00
     }
 }
 
 enum UserInformation {
-    enum firebaseDataKeys: String {
+    enum firestoreDataKeys: String {
+        case username = "username"
+        case email = "email"
+        case userId = "userId"
         case GEL = "GEL"
         case USD = "USD"
         case EUR = "EUR"
     }
 }
+

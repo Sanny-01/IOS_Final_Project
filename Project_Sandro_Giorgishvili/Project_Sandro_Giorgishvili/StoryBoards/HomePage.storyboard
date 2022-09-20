@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home PageVC-->
+        <!--Home View Controller-->
         <scene sceneID="S2f-sa-H8t">
             <objects>
-                <viewController storyboardIdentifier="home_page_vc" id="n0S-MJ-Pdx" customClass="HomePageVC" customModule="Project_Sandro_Giorgishvili" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="n0S-MJ-Pdx" customClass="HomeViewController" customModule="Project_Sandro_Giorgishvili" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iCY-nG-EY6">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -227,9 +227,14 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </tableView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="lbf-eE-yPF">
+                                        <rect key="frame" x="195.66666666666666" y="446" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="lbf-eE-yPF" firstAttribute="leading" secondItem="pN8-qf-iQT" secondAttribute="leading" constant="195.66999999999999" id="2gw-De-lA4"/>
+                                    <constraint firstItem="lbf-eE-yPF" firstAttribute="top" secondItem="0Jl-Vv-Uwz" secondAttribute="bottom" constant="150" id="KJ9-I4-7p1"/>
                                     <constraint firstAttribute="trailing" secondItem="AqG-Uy-iay" secondAttribute="trailing" id="MF6-xb-fOs"/>
                                     <constraint firstItem="0Jl-Vv-Uwz" firstAttribute="leading" secondItem="pN8-qf-iQT" secondAttribute="leading" constant="30" id="NFB-bc-xDN"/>
                                     <constraint firstAttribute="trailing" secondItem="0Jl-Vv-Uwz" secondAttribute="trailing" constant="30" id="NQN-p0-d0U"/>
@@ -361,19 +366,20 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="balanceInEURLbl" destination="Kxc-S1-oy7" id="iwl-os-RoA"/>
-                        <outlet property="balanceInUSDLbl" destination="rHX-bV-OqS" id="0hf-9B-AMb"/>
+                        <outlet property="balanceInEurLabel" destination="Kxc-S1-oy7" id="xu5-hs-biM"/>
+                        <outlet property="balanceInGelLabel" destination="Ban-dx-kEF" id="ZsO-AJ-EeA"/>
+                        <outlet property="balanceInUsdLabel" destination="rHX-bV-OqS" id="yCt-iR-DYX"/>
                         <outlet property="balanceView" destination="0Jl-Vv-Uwz" id="hyp-Ql-KLX"/>
                         <outlet property="bubbleImageView" destination="B2m-i3-4Fb" id="b6O-50-cP1"/>
                         <outlet property="contentView" destination="pN8-qf-iQT" id="5my-JJ-jyK"/>
-                        <outlet property="currencyTableView" destination="AqG-Uy-iay" id="6jg-VP-IQ9"/>
-                        <outlet property="homePageImage" destination="ZOy-30-KD9" id="2Me-Bt-w2d"/>
+                        <outlet property="exchangeRatesTableView" destination="AqG-Uy-iay" id="mZ8-wI-AMA"/>
+                        <outlet property="homeImageView" destination="ZOy-30-KD9" id="HY4-lq-d4h"/>
                         <outlet property="homePageiView" destination="8bC-Mu-Tdy" id="agW-yo-uD5"/>
-                        <outlet property="profilePageImage" destination="jwx-Hq-BmB" id="YEA-l2-CZf"/>
+                        <outlet property="profileImageView" destination="jwx-Hq-BmB" id="uJU-pe-yOO"/>
                         <outlet property="profilePageView" destination="J2C-Dl-m1K" id="Hhw-db-7NU"/>
+                        <outlet property="spinner" destination="lbf-eE-yPF" id="Kb2-Hj-OPD"/>
                         <outlet property="tabBarView" destination="rDC-nb-4HS" id="SGb-Dq-aNe"/>
-                        <outlet property="totalBalanceLbl" destination="Ban-dx-kEF" id="8Gp-Qo-bCZ"/>
-                        <outlet property="transfersPageImage" destination="yhj-Tu-Vrs" id="vMd-og-fzu"/>
+                        <outlet property="transfersImageView" destination="yhj-Tu-Vrs" id="iaM-Qz-W8Y"/>
                         <outlet property="transfersPageView" destination="2Qu-nd-JSg" id="Y46-wX-12i"/>
                     </connections>
                 </viewController>

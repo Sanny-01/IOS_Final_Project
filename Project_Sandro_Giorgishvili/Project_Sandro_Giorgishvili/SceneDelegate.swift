@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initialController = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as! LogInPageVC
+        guard let initialController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else { return }
 
         let navigationController = UINavigationController(rootViewController: initialController)
         

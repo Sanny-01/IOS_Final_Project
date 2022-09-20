@@ -1,19 +1,13 @@
 //
-//  NetworkWorker.swift
+//  APIManager.swift
 //  Project_Sandro_Giorgishvili
 //
-//  Created by TBC on 04.09.22.
+//  Created by TBC on 17.09.22.
 //
 
 import Foundation
 
-enum NetworkError: Error {
-    case wrongResponse
-    case wrongStatusCode(code: Int)
-}
-
-
-class NetworkService {
+final class APIManager {
     func fetchExchangeRate<T: Decodable>(to: String, from: String, amount: Double, decodingType: T.Type) async throws -> T {
         
         let baseUrl = "https://api.apilayer.com/exchangerates_data/convert?"

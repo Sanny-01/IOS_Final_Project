@@ -8,10 +8,15 @@
 import UIKit
 
 class TransfersViewController: UIViewController {
-    
+    // MARK: - Outlets
+
     @IBOutlet private weak var transfersTableView: UITableView!
     
+    // MARK: - Fields
+    
     let transfers = ["Internal transfer", "To someone else"]
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +29,9 @@ class TransfersViewController: UIViewController {
     }
 }
 
-extension TransfersViewController: UITableViewDataSource, UITableViewDelegate {
+//MARK: - UITableViewDataSource
+
+extension TransfersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         transfers.count
     }
@@ -35,17 +42,23 @@ extension TransfersViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
-    
+}
+
+//MARK: - UITableViewDelegate
+
+extension TransfersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        transfersTableView.deselectRow(at: indexPath, animated: true)
+        
         switch transfers[indexPath.row] {
         case "Internal transfer":
             let internalTransfersStoryboard = UIStoryboard(name: "InternalTransfers", bundle: nil)
-            let internalTransfersViewController = internalTransfersStoryboard.instantiateViewController(withIdentifier: "InternalTransfersViewController") as! InternalTransfersViewController
+            guard let internalTransfersViewController = internalTransfersStoryboard.instantiateViewController(withIdentifier: "InternalTransfersViewController") as? InternalTransfersViewController else { return }
 
             present(internalTransfersViewController, animated: true)
         case "To someone else":
             let transfersToSomeoneStoryboard = UIStoryboard(name: "TransferToSomeone", bundle: nil)
-            let transferToSomeoneViewController = transfersToSomeoneStoryboard.instantiateViewController(withIdentifier: "TransferToSomeoneViewController") as! TransferToSomeoneViewController
+            guard let transferToSomeoneViewController = transfersToSomeoneStoryboard.instantiateViewController(withIdentifier: "TransferToSomeoneViewController") as? TransferToSomeoneViewController else { return }
 
             present(transferToSomeoneViewController, animated: true)
         default:

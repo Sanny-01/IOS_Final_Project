@@ -19,16 +19,16 @@ class Constants {
         static let homePageVC = "home_page_VC"
     }
     
-    
     enum ErrorMessages {
-        static let emptyField = "This field should not be left empty."
-        static let passwordsDoNotMatch = "Passwords do not match."
+        static let emptyField = "This field should not be left empty"
+        static let passwordsDoNotMatch = "Passwords do not match"
         static let emailAlreadyRegistered = "Email is already registered."
         static let invalidEmailAddress = "Please type a valid email address."
         static let logInError = "Email or password is incorrect. Please, try again."
         static let incorrectPassword = "Password is not correct! Please, try again."
         static let samePasswords = "New password can not be the same as current."
         static let generalError = "An error occured. Please try again later."
+        static let passwordCriteriaError = "Password is not strong enough. Make sure it covers at least 3 of these 4 criteria. Must contian at least 1 uppercase, 1 lowercase, 1 symbol and be at least 8 characters long."
         
         enum UserRegistration {
             static let incorrectPassword = "Password is not correct! Please, try again."
@@ -43,6 +43,9 @@ class Constants {
             static let incorrectIbanCode = "Could not find a user with given IBAN code."
             static let ownIbanCodeEntered = "You can not add your account as receiver."
             static let transactionProccessFailed = "Could not proccess your transaction. Try again later."
+            static let fillRequiredFields = "Please fill required fields."
+            static let couldNotGetExchangeRates = "Could not load exchange rates. Please, try again later."
+            static let couldNotGetUserBalance = "Could not load user balance. Please, try again later."
         }
     }
     

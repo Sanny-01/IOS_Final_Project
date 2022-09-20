@@ -7,75 +7,85 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
-class ProfileVC: UIViewController {
+class ProfileViewController: UIViewController {
+    // MARK: - Outlests
     
     @IBOutlet private weak var profileSettingsTableView: UITableView!
     
-    let defaults = UserDefaults.standard
+    // MARK: - Fields
     
     var iconImageNames = ["person.fill", "envelope.fill", "lock.fill"]
     var settingNames = [String]()
     
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpArrayOfUserInfo()
         setUpDelegates()
+        getUserData()
     }
     
-    func setUpDelegates() {
+    // MARK: - Private Methods
+    
+    private func setUpDelegates() {
         profileSettingsTableView.delegate = self
         profileSettingsTableView.dataSource = self
     }
     
-    func setUpArrayOfUserInfo() {
-        settingNames.append(defaults.string(forKey: Constants.userDefaultsKey.username.rawValue) ?? "Not found")
-        settingNames.append(defaults.string(forKey: Constants.userDefaultsKey.email.rawValue) ?? "Not found")
-        settingNames.append("Change Password")
+    private func getUserData() {
+        guard  let userId = Auth.auth().currentUser?.uid else { return }
+
+        
+        Firestore.firestore().collection("users").document(userId).getDocument { [weak self ] (snapshot, error) in
+            
+            if error == nil {
+                guard let snapshotData = snapshot?.data()  else { return }
+                
+                let userData = UserCredentials.init(with: snapshotData)
+                
+                self?.settingNames.append(userData.username)
+                self?.settingNames.append(userData.email)
+                self?.settingNames.append("Change Password")
+                
+                self?.profileSettingsTableView.reloadData()
+            }
+        }
     }
+    
+    //MARK: - Actions
     
     @IBAction func logOutTapped(_ sender: UIButton) {
         let auth = Auth.auth()
         
         do {
             try auth.signOut()
-         
-            removeUserDefaults()
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let logInVc = storyboard.instantiateViewController(withIdentifier: "LogInViewController") as? LogInPageVC
-            guard let logInVC = logInVc else { return } 
+            guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else { return }
             
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             guard let window = windowScene?.windows.first else { return }
-            let navigationController = UINavigationController(rootViewController: logInVC)
-            // UIView.transition(with: window, duration: 0.2) {
+            let navigationController = UINavigationController(rootViewController: loginViewController)
+
             window.rootViewController = navigationController
             window.makeKeyAndVisible()
-            
         } catch let signOutError {
-            showAlertWithOkButton(title: nil, message: signOutError.localizedDescription)
+            AlertWorker.showAlertWithOkButton(title: nil, message: signOutError.localizedDescription, forViewController: self)
         }
-    }
-    
-    func removeUserDefaults() {
-        defaults.removeObject(forKey: Constants.userDefaultsKey.username.rawValue)
-        defaults.removeObject(forKey: Constants.userDefaultsKey.email.rawValue)
-        defaults.removeObject(forKey: Constants.userDefaultsKey.userId.rawValue)
-        defaults.removeObject(forKey: Constants.userDefaultsKey.GEL.rawValue)
-        defaults.removeObject(forKey: Constants.userDefaultsKey.USD.rawValue)
-        defaults.removeObject(forKey: Constants.userDefaultsKey.EUR.rawValue)
     }
 }
 
-extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableViewDataSource
+
+extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        iconImageNames.count
+        settingNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = profileSettingsTableView.dequeueReusableCell(withIdentifier: "ProfileSettingsCell", for: indexPath) as! ProfileSettingsCell
-        
         cell.settingIconImage.image = UIImage(systemName: iconImageNames[indexPath.row])
         cell.settingNameLbl.text = settingNames[indexPath.row]
         
@@ -85,16 +95,17 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
+}
+
+// MARK: - UITableViewDelegate
+
+extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         profileSettingsTableView.deselectRow(at: indexPath, animated: true)
         
         let storyboard = UIStoryboard(name: "PasswordChange", bundle: nil)
-        
-        let passwordChangeViewController = storyboard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! PasswordChangeViewController
+        guard let passwordChangeViewController = storyboard.instantiateViewController(withIdentifier: "PasswordChangeViewController") as? PasswordChangeViewController else { return }
         
         navigationController?.pushViewController(passwordChangeViewController, animated: true)
-        
-        //present(passwordChangeViewController,animated: true)
     }
 }
