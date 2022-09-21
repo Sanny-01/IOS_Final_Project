@@ -15,8 +15,26 @@ class Constants {
         static let repeatPassword = "Repeat Password"
     }
     
-    struct StoryBoard {
-        static let homePageVC = "home_page_VC"
+    enum StoryboardIds {
+        static let signUpViewController = "SignUpViewController"
+        static let homeViewController = "HomeViewController"
+        static let profileViewController = "ProfileViewController"
+        static let transfersViewController = "TransfersViewController"
+        static let loginViewController = "LoginViewController"
+        static let passwordChangeViewController = "PasswordChangeViewController"
+        static let internalTransfersViewController = "InternalTransfersViewController"
+        static let transferToSomeoneViewController = "TransferToSomeoneViewController"
+    }
+    
+    enum StoryBoards {
+        static let signUp = "SignUp"
+        static let home = "HomePage"
+        static let profile = "ProfilePage"
+        static let transfers = "TransfersPage"
+        static let login = "Main"
+        static let passwordChange = "PasswordChange"
+        static let internalTransfers = "InternalTransfers"
+        static let transferToSomeone = "TransferToSomeone"
     }
     
     enum ErrorMessages {
@@ -60,14 +78,5 @@ class Constants {
         static let mustContainUppercase = "^(?=.*[A-Z]).{1,}$"
         static let mustContainSymbol = "^(?=.*[$@$!%*#?&]).{1,}$"
         static let mustContainNumber = "^(?=.*[0-9]).{1,}$"
-    }
-    
-    enum userDefaultsKey: String {
-        case username = "username"
-        case email = "email"
-        case userId = "userId"
-        case GEL = "GEL"
-        case USD = "USD"
-        case EUR = "EUR"
     }
 }

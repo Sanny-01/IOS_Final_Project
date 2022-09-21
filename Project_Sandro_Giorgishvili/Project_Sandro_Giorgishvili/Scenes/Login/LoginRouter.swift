@@ -25,16 +25,16 @@ final class LoginRouter: NSObject, LoginRoutingLogic, LoginDataPassing {
     // MARK: - LoginRoutingLogic
     
     func navigateToRegisterNewUsername() {
-        let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
-        guard let signUpViewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController else { return }
+        let storyboard = UIStoryboard(name: Constants.StoryBoards.signUp, bundle: nil)
+        guard let signUpViewController = storyboard.instantiateViewController(withIdentifier: Constants.StoryboardIds.signUpViewController) as? SignUpViewController else { return }
         
         viewController?.navigationController?.pushViewController(signUpViewController, animated: true)
     }
     
     func navigateToHomeMakingItRootViewController() {
         DispatchQueue.main.async {
-            let storyboard = UIStoryboard(name: "HomePage", bundle: nil)
-            guard let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
+            let storyboard = UIStoryboard(name: Constants.StoryBoards.home, bundle: nil)
+            guard let homeViewController = storyboard.instantiateViewController(withIdentifier: Constants.StoryboardIds.homeViewController) as? HomeViewController else { return }
             
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             guard let window = windowScene?.windows.first else { return }

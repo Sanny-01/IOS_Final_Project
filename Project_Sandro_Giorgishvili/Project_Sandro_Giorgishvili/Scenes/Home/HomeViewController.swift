@@ -121,7 +121,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func setNavigationBarColor(){
-        navigationController?.navigationBar.barTintColor = UIColor(red: 24, green: 25, blue: 26, alpha: 1.00)
+        navigationController?.navigationBar.barTintColor = UIColor.clear
     }
     
     private func setUpBalanceView() {
@@ -215,7 +215,6 @@ final class HomeViewController: UIViewController {
     }
     
     private func validateTabBarItemChange(tag: Int) -> Bool {
-
         if tag == 0 && transfersImageView.tintColor == .midnightBlue {
            return false
         } else if tag == 1 && homeImageView.tintColor == .midnightBlue {

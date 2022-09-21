@@ -9,19 +9,6 @@ import Foundation
 import UIKit
 
 final class Helper {
-    static func returnUserDefaultsKey(forText: String) -> String {
-        switch forText {
-        case "GEL":
-            return Constants.userDefaultsKey.GEL.rawValue
-        case "USD":
-            return Constants.userDefaultsKey.USD.rawValue
-        case "EUR":
-            return Constants.userDefaultsKey.EUR.rawValue
-        default:
-            return ""
-        }
-    }
-    
    static func returnFirebaseKey(forText: String) -> String {
         switch forText {
         case "GEL":

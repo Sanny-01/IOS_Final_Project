@@ -52,13 +52,13 @@ extension TransfersViewController: UITableViewDelegate {
         
         switch transfers[indexPath.row] {
         case "Internal transfer":
-            let internalTransfersStoryboard = UIStoryboard(name: "InternalTransfers", bundle: nil)
-            guard let internalTransfersViewController = internalTransfersStoryboard.instantiateViewController(withIdentifier: "InternalTransfersViewController") as? InternalTransfersViewController else { return }
+            let internalTransfersStoryboard = UIStoryboard(name: Constants.StoryBoards.internalTransfers, bundle: nil)
+            guard let internalTransfersViewController = internalTransfersStoryboard.instantiateViewController(withIdentifier: Constants.StoryboardIds.internalTransfersViewController) as? InternalTransfersViewController else { return }
 
             present(internalTransfersViewController, animated: true)
         case "To someone else":
-            let transfersToSomeoneStoryboard = UIStoryboard(name: "TransferToSomeone", bundle: nil)
-            guard let transferToSomeoneViewController = transfersToSomeoneStoryboard.instantiateViewController(withIdentifier: "TransferToSomeoneViewController") as? TransferToSomeoneViewController else { return }
+            let transfersToSomeoneStoryboard = UIStoryboard(name: Constants.StoryBoards.transferToSomeone, bundle: nil)
+            guard let transferToSomeoneViewController = transfersToSomeoneStoryboard.instantiateViewController(withIdentifier: Constants.StoryboardIds.transferToSomeoneViewController) as? TransferToSomeoneViewController else { return }
 
             present(transferToSomeoneViewController, animated: true)
         default:

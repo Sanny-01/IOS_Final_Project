@@ -68,8 +68,8 @@ class ProfileViewController: UIViewController {
         do {
             try auth.signOut()
             
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else { return }
+            let storyboard = UIStoryboard(name: Constants.StoryBoards.login, bundle: nil)
+            guard let loginViewController = storyboard.instantiateViewController(withIdentifier: Constants.StoryboardIds.loginViewController) as? LoginViewController else { return }
             
             let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
             guard let window = windowScene?.windows.first else { return }
@@ -109,8 +109,8 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         profileSettingsTableView.deselectRow(at: indexPath, animated: true)
         
-        let storyboard = UIStoryboard(name: "PasswordChange", bundle: nil)
-        guard let passwordChangeViewController = storyboard.instantiateViewController(withIdentifier: "PasswordChangeViewController") as? PasswordChangeViewController else { return }
+        let storyboard = UIStoryboard(name: Constants.StoryBoards.passwordChange, bundle: nil)
+        guard let passwordChangeViewController = storyboard.instantiateViewController(withIdentifier: Constants.StoryboardIds.passwordChangeViewController) as? PasswordChangeViewController else { return }
         
         navigationController?.pushViewController(passwordChangeViewController, animated: true)
     }

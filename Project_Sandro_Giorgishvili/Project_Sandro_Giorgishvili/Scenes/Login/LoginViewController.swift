@@ -79,7 +79,6 @@ final class LoginViewController: UIViewController {
     // MARK: - Registration
     
     @IBAction func signUpTapped(_ sender: UIButton) {
-        //displayRegisterNewUser(ViewModel: Login.showRegisterPage.ViewModel())
         router?.navigateToRegisterNewUsername()
     }
     

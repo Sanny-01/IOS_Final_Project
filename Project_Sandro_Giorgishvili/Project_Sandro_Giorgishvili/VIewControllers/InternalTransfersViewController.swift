@@ -287,13 +287,12 @@ class InternalTransfersViewController: UIViewController {
             guard let toCurrencyBalance = getToCurrencyBalance() else { return }
             
             if fromCurrencyBalance >= sellAmount {
-                let fromBalanceKeyInFirestore = Helper.returnFirebaseKey(forText: fromTextField.text ?? "" )
+                let fromBalanceKeyInFirestore = Helper.returnFirebaseKey(forText: fromTextField.text ?? "")
                 let toBalanceKeyInFirestore =  Helper.returnFirebaseKey(forText: toTextField.text ?? "")
                 
                 guard  let userUID = Auth.auth().currentUser?.uid else { return }
                 
                 Firestore.firestore().collection("users").document(userUID).getDocument { [weak self] snapshot, error in
-                    
                     if error == nil {
                         snapshot?.reference.updateData( [fromBalanceKeyInFirestore: (round( (fromCurrencyBalance - sellAmount) * 100.00) / 100.00)] )
                         snapshot?.reference.updateData( [toBalanceKeyInFirestore: (round ( (toCurrencyBalance + buyAmount) * 100.00 ) / 100.00)] )
@@ -332,7 +331,6 @@ extension InternalTransfersViewController: UIPickerViewDataSource, UIPickerViewD
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
         switch pickerView.tag {
         case 0:
             fromTextField.text = availableCurrencies[row]

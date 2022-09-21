@@ -119,6 +119,8 @@ final class SignUpInteractor: SignUpDataStore {
     }
 }
 
+//MARK: - SignUpBusinessLogic
+
 extension SignUpInteractor: SignUpBusinessLogic {
     func registerNewUser(request: SignUp.Registration.Request) {
         presenter?.presentEmptyErrorLabels(response: SignUp.EmptyErrorLabels.Response())

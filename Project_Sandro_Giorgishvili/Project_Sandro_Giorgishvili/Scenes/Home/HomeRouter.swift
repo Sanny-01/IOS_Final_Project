@@ -29,16 +29,16 @@ final class HomeRouter: NSObject, HomeDataPassing {
 
 extension HomeRouter: HomeRoutingLogic {
     func moveToProfile(view: UIView, parentViewController: UIViewController) {
-        let storyboard = UIStoryboard(name: "ProfilePage", bundle: nil)
-        guard let profileViewController = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
+        let storyboard = UIStoryboard(name: Constants.StoryBoards.profile, bundle: nil)
+        guard let profileViewController = storyboard.instantiateViewController(withIdentifier: Constants.StoryboardIds.profileViewController) as? ProfileViewController else { return }
         view.addSubview(profileViewController.view)
         parentViewController.addChild(profileViewController)
         profileViewController.didMove(toParent: parentViewController)
     }
     
     func moveToTransfers(view: UIView, parentViewController: UIViewController) {
-        let storyboard = UIStoryboard(name: "TransfersPage", bundle: nil)
-        guard let transfersViewController = storyboard.instantiateViewController(withIdentifier: "TransfersViewController") as? TransfersViewController else { return }
+        let storyboard = UIStoryboard(name: Constants.StoryBoards.transfers, bundle: nil)
+        guard let transfersViewController = storyboard.instantiateViewController(withIdentifier: Constants.StoryboardIds.transfersViewController) as? TransfersViewController else { return }
         view.addSubview(transfersViewController.view)
         parentViewController.addChild(transfersViewController)
         transfersViewController.didMove(toParent: parentViewController)
