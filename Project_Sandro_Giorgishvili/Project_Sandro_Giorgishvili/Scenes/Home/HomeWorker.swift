@@ -16,8 +16,8 @@ protocol HomeWorkerLogic {
 final class HomeWorker: HomeWorkerLogic {
     //MARK: - API Call Components
     
-//    let baseUrl = "https://api.apilayer.com/exchangerates_data/convert?"
-//        let apiKey = "3kJamQMdmqGI76HLOM6zGxWvOSgwWXnx"
+    let baseUrl = "https://api.apilayer.com/exchangerates_data/convert?"
+    let apiKey = "3kJamQMdmqGI76HLOM6zGxWvOSgwWXnx"
 //    let apiKey = "1"
     
     private var api: APIManager

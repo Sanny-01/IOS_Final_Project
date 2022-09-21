@@ -246,8 +246,8 @@
             filePath = "Project_Sandro_Giorgishvili/VIewControllers/InternalTransfersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "returnDesiredCurrency()"
             landmarkType = "7">
          </BreakpointContent>
@@ -262,8 +262,8 @@
             filePath = "Project_Sandro_Giorgishvili/VIewControllers/InternalTransfersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "transferButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -278,8 +278,8 @@
             filePath = "Project_Sandro_Giorgishvili/VIewControllers/InternalTransfersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "transferButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -294,8 +294,8 @@
             filePath = "Project_Sandro_Giorgishvili/VIewControllers/InternalTransfersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "transferButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -310,8 +310,8 @@
             filePath = "Project_Sandro_Giorgishvili/VIewControllers/InternalTransfersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "transferButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -374,8 +374,8 @@
             filePath = "Project_Sandro_Giorgishvili/VIewControllers/TransferToSomeoneViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "getReceiversDataSnapshot(id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -390,8 +390,8 @@
             filePath = "Project_Sandro_Giorgishvili/VIewControllers/TransferToSomeoneViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "getReceiversDataSnapshot(id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -406,8 +406,8 @@
             filePath = "Project_Sandro_Giorgishvili/VIewControllers/TransferToSomeoneViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "requestTransaction(fromUser:toUser:currency:amount:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -438,8 +438,8 @@
             filePath = "Project_Sandro_Giorgishvili/VIewControllers/TransferToSomeoneViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "getReceiversDataSnapshot(id:)"
             landmarkType = "7">
             <Locations>
@@ -582,8 +582,8 @@
             filePath = "Project_Sandro_Giorgishvili/Scenes/Login/LoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "displayEmptyPassword(ViewModel:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -598,8 +598,8 @@
             filePath = "Project_Sandro_Giorgishvili/Scenes/Login/LoginViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "displayEmptyEmail(ViewModel:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -774,8 +774,8 @@
             filePath = "Project_Sandro_Giorgishvili/Scenes/Home/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -806,8 +806,8 @@
             filePath = "Project_Sandro_Giorgishvili/VIewControllers/InternalTransfersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "getExchangeValues()"
             landmarkType = "7">
             <Locations>
@@ -869,8 +869,8 @@
             filePath = "Project_Sandro_Giorgishvili/Scenes/Home/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>

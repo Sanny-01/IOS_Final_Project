@@ -18,7 +18,7 @@ class PasswordChangeViewController: UIViewController {
     @IBOutlet private weak var currentPasswordLabel: UILabel!
     @IBOutlet private weak var newPasswordLabel: UILabel!
     @IBOutlet private weak var repeatPasswordLabel: UILabel!
-    
+
     @IBOutlet private weak var lowercaseLetterCriteriaLabel: UILabel!
     @IBOutlet private weak var uppercaseLetterCriteriaLabel: UILabel!
     @IBOutlet private weak var numberCriteriaLabel: UILabel!
@@ -27,6 +27,8 @@ class PasswordChangeViewController: UIViewController {
     @IBOutlet private weak var currentPasswordErrorLabel: UILabel!
     @IBOutlet private weak var newPasswordErrorLabel: UILabel!
     @IBOutlet private weak var repeatPasswordErrorLabel: UILabel!
+    
+    @IBOutlet private weak var saveButton: UIButton!
     
     var passwordCriteria = 0
     var emptyFields = 0
@@ -40,6 +42,8 @@ class PasswordChangeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        makeElementCornersRounded()
+        setPlaceHolderColorsToWhite()
         setUpTextFields()
         hideKeyboardWhenTappedAround()
     }
@@ -54,11 +58,29 @@ class PasswordChangeViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    deinit {
-        print("Page was deinitilized!!!!!!!!!!!!!!!!!!!!!!")
+    //MARK: - Private Methods
+    
+    private func makeElementCornersRounded() {
+        saveButton.layer.cornerRadius = 20
     }
     
-    //MARK: - Private Methods
+    private func setPlaceHolderColorsToWhite() {
+        let currentPasswordPlaceholder = NSAttributedString(string: "Current Password",
+                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        currentPasswordTextField.attributedPlaceholder = currentPasswordPlaceholder
+        
+        let newPasswordPlaceholder = NSAttributedString(string: "New Password",
+                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        newPasswordTextField.attributedPlaceholder = newPasswordPlaceholder
+        
+        let repeatPasswordPlaceholder = NSAttributedString(string: "Repeat Password",
+                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        repeatPasswordTextField.attributedPlaceholder = repeatPasswordPlaceholder
+        
+    }
     
     func setUpTextFields() {
         setUpTextFieldBottomLine(textField: currentPasswordTextField, bottomLine: currentPasswordBottomLine)
@@ -69,7 +91,7 @@ class PasswordChangeViewController: UIViewController {
     private func setUpTextFieldBottomLine(textField: UITextField, bottomLine: CALayer) {
         textField.borderStyle = .none
         bottomLine.frame = CGRect(x: 0.0, y: textField.frame.height - 1 , width: textField.frame.width, height: 1)
-        bottomLine.backgroundColor = UIColor.lightGray.cgColor
+        bottomLine.backgroundColor = UIColor.white.cgColor
         
         textField.layer.addSublayer(bottomLine)
         textField.clipsToBounds = true
@@ -123,12 +145,12 @@ class PasswordChangeViewController: UIViewController {
     private func editingDidBeginActionsOnTextField(textfield: UITextField, titleLabel: UILabel, textFieldBottomLine: CALayer) {
         textfield.placeholder = ""
         titleLabel.alpha = 1
-        changeColor(color: .green, bottomLine: textFieldBottomLine)
+        changeColor(color: .cyan, bottomLine: textFieldBottomLine)
     }
     
     private func editingDidEndActionsOnTextField(textfield: UITextField, titleLabel: UILabel, textFieldBottomLine: CALayer, placeholderText: String) {
         guard let text = textfield.text else { return }
-        changeColor(color: .lightGray, bottomLine: textFieldBottomLine)
+        changeColor(color: .white, bottomLine: textFieldBottomLine)
         
         if text.isEmpty {
             textfield.placeholder = placeholderText
@@ -245,16 +267,16 @@ class PasswordChangeViewController: UIViewController {
         guard let newPassword = newPasswordTextField.text else { return }
         
         passwordCriteria += checkPasswordWithExpression(expression: Constants.Regex.mustContainLowercase, password: newPassword) ? 1 : 0
-        lowercaseLetterCriteriaLabel.textColor = checkPasswordWithExpression(expression: Constants.Regex.mustContainLowercase, password: newPassword) ? UIColor.systemBlue : UIColor.systemGray
+        lowercaseLetterCriteriaLabel.textColor = checkPasswordWithExpression(expression: Constants.Regex.mustContainLowercase, password: newPassword) ? UIColor.cyan : UIColor.systemGray
         
         passwordCriteria += checkPasswordWithExpression(expression: Constants.Regex.mustContainUppercase, password: newPassword) ? 1 : 0
-        uppercaseLetterCriteriaLabel.textColor = checkPasswordWithExpression(expression: Constants.Regex.mustContainUppercase, password: newPassword) ? UIColor.systemBlue : UIColor.systemGray
+        uppercaseLetterCriteriaLabel.textColor = checkPasswordWithExpression(expression: Constants.Regex.mustContainUppercase, password: newPassword) ? UIColor.cyan : UIColor.systemGray
         
         passwordCriteria += checkPasswordWithExpression(expression: Constants.Regex.mustContainSymbol, password: newPassword) ? 1 : 0
-        specialCharacterCriteriaLabel.textColor = checkPasswordWithExpression(expression: Constants.Regex.mustContainSymbol, password: newPassword) ? UIColor.systemBlue : UIColor.systemGray
+        specialCharacterCriteriaLabel.textColor = checkPasswordWithExpression(expression: Constants.Regex.mustContainSymbol, password: newPassword) ? UIColor.cyan : UIColor.systemGray
         
         passwordCriteria += checkPasswordWithExpression(expression: Constants.Regex.mustContainNumber, password: newPassword) ? 1 : 0
-        numberCriteriaLabel.textColor = checkPasswordWithExpression(expression: Constants.Regex.mustContainNumber, password: newPassword) ? UIColor.systemBlue : UIColor.systemGray
+        numberCriteriaLabel.textColor = checkPasswordWithExpression(expression: Constants.Regex.mustContainNumber, password: newPassword) ? UIColor.cyan : UIColor.systemGray
     }
     
     private func checkPasswordWithExpression(expression: String, password: String) -> Bool {

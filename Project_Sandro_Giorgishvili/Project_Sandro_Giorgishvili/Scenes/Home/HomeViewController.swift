@@ -21,6 +21,8 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet private weak var scrollView: UIScrollView!
+    
     @IBOutlet private weak var homePageiView: UIView!
     @IBOutlet private weak var transfersPageView: UIView!
     @IBOutlet private weak var profilePageView: UIView!
@@ -83,15 +85,16 @@ final class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setTintColorAndAnimateTapToTabBarItem(tag: 1)
-//        setUpSpinner()
+        setUpSpinner()
         startSkeletonAnimation()
         interactor?.getUserBalace(request: Home.GetUserBalance.Request())
-        //startAnimatingSpinner()
-        //interactor?.getExchangeRates(request: Home.GetExchangeRates.Request())
+        startAnimatingSpinner()
+        interactor?.getExchangeRates(request: Home.GetExchangeRates.Request())
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBarColor()
         setUpRefreshControl()
         setUpBalanceView()
         setUpTabBar()
@@ -110,11 +113,15 @@ final class HomeViewController: UIViewController {
     }
     
     // MARK: - Private Methods
-    
-    // TODO: Add scroll View
+
     private func setUpRefreshControl() {
+        refreshControl.tintColor = UIColor.cyan
         refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
-//        self.view.addSubview(refreshControl)
+        self.scrollView.addSubview(refreshControl)
+    }
+    
+    private func setNavigationBarColor(){
+        navigationController?.navigationBar.barTintColor = UIColor(red: 24, green: 25, blue: 26, alpha: 1.00)
     }
     
     private func setUpBalanceView() {
@@ -235,6 +242,7 @@ final class HomeViewController: UIViewController {
     
     @objc private func refresh(send: UIRefreshControl) {
         interactor?.getUserBalace(request: Home.GetUserBalance.Request())
+        refreshControl.endRefreshing()
     }
 }
 

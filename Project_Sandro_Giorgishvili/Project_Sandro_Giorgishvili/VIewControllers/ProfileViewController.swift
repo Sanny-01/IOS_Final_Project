@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController {
     // MARK: - Outlests
     
     @IBOutlet private weak var profileSettingsTableView: UITableView!
+    @IBOutlet private weak var signOutButton: UIButton!
     
     // MARK: - Fields
     
@@ -23,11 +24,16 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        makeElementCornersRounded()
         setUpDelegates()
         getUserData()
     }
     
     // MARK: - Private Methods
+    
+    private func makeElementCornersRounded() {
+        signOutButton.layer.cornerRadius = 20
+    }
     
     private func setUpDelegates() {
         profileSettingsTableView.delegate = self

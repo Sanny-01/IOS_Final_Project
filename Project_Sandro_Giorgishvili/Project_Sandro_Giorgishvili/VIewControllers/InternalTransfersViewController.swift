@@ -21,7 +21,10 @@ class InternalTransfersViewController: UIViewController {
     @IBOutlet private weak var balanceForFromLbl: UILabel!
     @IBOutlet private weak var balanceForToLbl: UILabel!
     
-    @IBOutlet weak var toLabel: UIView!
+    @IBOutlet weak var transferButton: UIButton!
+    
+    @IBOutlet weak var fromImageView: UIImageView!
+    @IBOutlet weak var toImageView: UIImageView!
     
     // MARK: - Fields
     
@@ -47,6 +50,8 @@ class InternalTransfersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        makeElementCornersRounded()
+        setPlaceHolderColorsToWhite()
         setUpTextFields()
         getUserBalance()
         getExchangeValues()
@@ -54,6 +59,29 @@ class InternalTransfersViewController: UIViewController {
     }
     
     // MARK: - Private Methods
+    
+    private func makeElementCornersRounded() {
+        transferButton.layer.cornerRadius = 20
+    }
+    
+    private func setPlaceHolderColorsToWhite() {
+        let choosePlaceholder = NSAttributedString(string: "Choose",
+                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        fromTextField.attributedPlaceholder = choosePlaceholder
+        toTextField.attributedPlaceholder = choosePlaceholder
+        
+        let sellPlaceHolder = NSAttributedString(string: "Sell",
+                                                 attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        sellTextField.attributedPlaceholder = sellPlaceHolder
+        
+        let buyPlaceHolder = NSAttributedString(string: "Buy",
+                                                attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        buyTextField.attributedPlaceholder = buyPlaceHolder
+        
+    }
     
     private func setUpTextFields() {
         setUpTextFieldBottomLine(textField: sellTextField, bottomLine: sellTextFieldBottomLine)
@@ -78,7 +106,6 @@ class InternalTransfersViewController: UIViewController {
     
     private func getUserBalance() {
         guard  let userId = Auth.auth().currentUser?.uid else { return }
-        
         
         Firestore.firestore().collection("users").document(userId).getDocument { [weak self ] (snapshot, error) in
             
@@ -111,7 +138,6 @@ class InternalTransfersViewController: UIViewController {
     }
     
     private func getExchangeValues() {
-        
         Task {
             do {
                 gelToUsd = try await NetworkService().fetchExchangeRate(to: "GEL", from: "USD", amount: 1.00, decodingType: CurrencyAmount.self).result 
@@ -186,6 +212,19 @@ class InternalTransfersViewController: UIViewController {
         }
     }
     
+    private func getImage(currency: String) -> UIImage {
+        switch currency {
+        case "GEL":
+            return UIImage(systemName: "larisign.circle") ?? UIImage()
+        case "USD":
+            return UIImage(systemName: "dollarsign.circle") ?? UIImage()
+        case "EUR":
+            return UIImage(systemName: "eurosign.circle") ??  UIImage()
+        default:
+            return UIImage()
+        }
+    }
+    
     private func validateForEmptiness() -> Bool {
         if fromTextField.text?.isEmpty ?? true || toTextField.text?.isEmpty ?? true {
             clearBuyAndSell()
@@ -196,7 +235,6 @@ class InternalTransfersViewController: UIViewController {
             AlertWorker.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.sellAmountNotEntered, forViewController: self)
             return false
         }
-        // if validations are successfull and user has enered amount already refresh it
         setBuyAmount()
         
         return true
@@ -209,7 +247,6 @@ class InternalTransfersViewController: UIViewController {
     
     private func setBuyAmount() {
         guard let desiredCurrency = returnDesiredCurrency() else { return }
-        // if value becomes zero
         guard let sellAmount = Double(sellTextField.text ?? "") else {
             buyTextField.text = ""
             return
@@ -307,6 +344,7 @@ extension InternalTransfersViewController: UIPickerViewDataSource, UIPickerViewD
                 
             }
             balanceForFromLbl.text = "\(getFromCurrencyBalance() ?? 0.00)"
+            fromImageView.image = getImage(currency: availableCurrencies[row])
         case 1:
             toTextField.text = availableCurrencies[row]
             toTextField.resignFirstResponder()
@@ -316,6 +354,7 @@ extension InternalTransfersViewController: UIPickerViewDataSource, UIPickerViewD
                 balanceForFromLbl.text = ""
             }
             balanceForToLbl.text = "\(getToCurrencyBalance() ?? 0.00)"
+            toImageView.image = getImage(currency: availableCurrencies[row])
         default:
             print("Error occured")
         }

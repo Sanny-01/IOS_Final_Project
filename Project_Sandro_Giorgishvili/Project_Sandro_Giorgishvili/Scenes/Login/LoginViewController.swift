@@ -26,10 +26,13 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Outlets
     
+    @IBOutlet private var backgroundView: UIView!
+    
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     
     @IBOutlet private weak var emailErrorLabel: UILabel!
+    @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var passwordErrorLabel: UILabel!
     
     
@@ -70,6 +73,7 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
+        makeElementCornersRounded()
     }
     
     // MARK: - Registration
@@ -83,6 +87,14 @@ final class LoginViewController: UIViewController {
     
     @IBAction func logInTapped(_ sender: UIButton) {
         interactor?.processLogin(request: Login.ProcessLogin.Request(email: emailTextField.text, password: passwordTextField.text))
+    }
+    
+    // MARK: - Private Methods
+    
+    private func makeElementCornersRounded() {
+        emailTextField.layer.cornerRadius = 20
+        passwordTextField.layer.cornerRadius = 20
+        loginButton.layer.cornerRadius = 20
     }
 }
 

@@ -29,6 +29,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet private weak var emailErrorLabel: UILabel!
     @IBOutlet private weak var passwordErrorLabel: UILabel!
     @IBOutlet private weak var repeatPasswordErrorLabel: UILabel!
+    @IBOutlet private weak var signUpButton: UIButton!
     
     // MARK: - Clean Components
     
@@ -67,14 +68,28 @@ class SignUpViewController: UIViewController {
         router.dataStore = interactor
     }
     
+    // MARK: - View Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
+        makeElementCornersRounded()
+    }
+    
     // MARK: - Registration
     
     @IBAction func signUpTapped(_ sender: UIButton) {
         interactor?.registerNewUser(request: SignUp.Registration.Request(username: usernameTextField.text, email: emailTextField.text, password: passwordTextField.text, repeatPassword: repeatPasswordTextField.text))
     }
     
-    @IBAction func didChangeRepeatPassowrd(_ sender: UITextField) {
-        
+    // MARK: - Private Methods
+    
+    private func makeElementCornersRounded() {
+        usernameTextField.layer.cornerRadius = 20
+        emailTextField.layer.cornerRadius = 20
+        passwordTextField.layer.cornerRadius = 20
+        repeatPasswordTextField.layer.cornerRadius = 20
+        signUpButton.layer.cornerRadius = 20
     }
 }
 

@@ -38,7 +38,6 @@
 		3BB99D8E28D9B02600BF6271 /* currencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB99D8D28D9B02600BF6271 /* currencyModel.swift */; };
 		3BBFA50B28CAB2770092B944 /* PasswordChange.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFA50A28CAB2770092B944 /* PasswordChange.storyboard */; };
 		3BBFA50D28CABA620092B944 /* HomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFA50C28CABA620092B944 /* HomePage.storyboard */; };
-		3BBFA50F28CAC03E0092B944 /* CurrencyBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBFA50E28CAC03E0092B944 /* CurrencyBoard.storyboard */; };
 		3BBFA51228CBECA40092B944 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBFA51128CBECA40092B944 /* UserCredentials.swift */; };
 		3BD22D1628D517FE004DF6FD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD22D1528D517FE004DF6FD /* Helper.swift */; };
 		3BD22D1928D529A0004DF6FD /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BD22D1828D529A0004DF6FD /* SignUp.storyboard */; };
@@ -91,7 +90,6 @@
 		3BB99D8D28D9B02600BF6271 /* currencyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = currencyModel.swift; path = ../../../../../.Trash/currencyModel.swift; sourceTree = "<group>"; };
 		3BBFA50A28CAB2770092B944 /* PasswordChange.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordChange.storyboard; sourceTree = "<group>"; };
 		3BBFA50C28CABA620092B944 /* HomePage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomePage.storyboard; sourceTree = "<group>"; };
-		3BBFA50E28CAC03E0092B944 /* CurrencyBoard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CurrencyBoard.storyboard; sourceTree = "<group>"; };
 		3BBFA51128CBECA40092B944 /* UserCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
 		3BD22D1528D517FE004DF6FD /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		3BD22D1828D529A0004DF6FD /* SignUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUp.storyboard; sourceTree = "<group>"; };
@@ -278,7 +276,6 @@
 				3B3ED61528CA42F60036D760 /* ProfilePage.storyboard */,
 				3BBFA50C28CABA620092B944 /* HomePage.storyboard */,
 				3BBFA50A28CAB2770092B944 /* PasswordChange.storyboard */,
-				3BBFA50E28CAC03E0092B944 /* CurrencyBoard.storyboard */,
 				3BD7C59928CD467D00C08D08 /* TransfersPage.storyboard */,
 				3BD7C59B28CE0ACF00C08D08 /* InternalTransfers.storyboard */,
 				3B05DE5B28D263F6006CD33B /* TransferToSomeone.storyboard */,
@@ -412,7 +409,6 @@
 				3BBFA50B28CAB2770092B944 /* PasswordChange.storyboard in Resources */,
 				3BD22D1928D529A0004DF6FD /* SignUp.storyboard in Resources */,
 				3BD7C59C28CE0ACF00C08D08 /* InternalTransfers.storyboard in Resources */,
-				3BBFA50F28CAC03E0092B944 /* CurrencyBoard.storyboard in Resources */,
 				3BECBC8C2896EFA900ACFEC5 /* GoogleService-Info.plist in Resources */,
 				3B05DE5C28D263F6006CD33B /* TransferToSomeone.storyboard in Resources */,
 				3BD7C59A28CD467D00C08D08 /* TransfersPage.storyboard in Resources */,

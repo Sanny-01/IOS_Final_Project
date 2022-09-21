@@ -19,6 +19,7 @@ class TransferToSomeoneViewController: UIViewController {
     @IBOutlet private weak var receiversUsernameLabel: UILabel!
     @IBOutlet private weak var balanceLabel: UILabel!
     @IBOutlet private weak var currencyImageView: UIImageView!
+    @IBOutlet private weak var transferButton: UIButton!
     
     // MARK: - Fields
     
@@ -38,6 +39,8 @@ class TransferToSomeoneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        makeElementCornersRounded()
+        setPlaceHolderColorsToWhite()
         getUserBalance()
         hideReceiverView()
         setUpTextFields()
@@ -45,6 +48,28 @@ class TransferToSomeoneViewController: UIViewController {
     }
     
     // MARK: - Private Methods
+    
+    private func makeElementCornersRounded() {
+        transferButton.layer.cornerRadius = 20
+    }
+    
+    private func setPlaceHolderColorsToWhite() {
+        let choosePlaceholder = NSAttributedString(string: "Choose",
+                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        transferFromTextField.attributedPlaceholder = choosePlaceholder
+        
+        let receiversIbanPlaceholder = NSAttributedString(string: "Receiver's IBAN",
+                                                          attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        receiversIbanTextField.attributedPlaceholder = receiversIbanPlaceholder
+        
+        let amountPlaceholder = NSAttributedString(string: "Amount",
+                                                   attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        transferAmountTextField.attributedPlaceholder = amountPlaceholder
+        
+    }
     
     private func getUserBalance() {
         guard  let userId = Auth.auth().currentUser?.uid else { return }
@@ -112,7 +137,7 @@ class TransferToSomeoneViewController: UIViewController {
     }
     
     private func getUserDataSnapshot(id: String) async throws -> DocumentSnapshot? {
-       try await Firestore.firestore().collection("users").document(id).getDocument()
+        try await Firestore.firestore().collection("users").document(id).getDocument()
     }
     
     private func validateForEmptiness(textField: String) -> Bool {
@@ -146,7 +171,6 @@ class TransferToSomeoneViewController: UIViewController {
     }
     
     private func requestTransaction(fromUser: String, toUser: String, currency: String, amount: String) {
-        
         Task {
             do {
                 
@@ -168,7 +192,7 @@ class TransferToSomeoneViewController: UIViewController {
                 
                 if validateBalance(userBalance: currentUsersBalance, receiverBalance: transferAmount) {
                     let currrencyKeyForFirebase = Helper.returnFirebaseKey(forText: currency)
-                            
+                    
                     try await receiversSnapshot.reference.updateData([currrencyKeyForFirebase: (round( (receiversBalance + transferAmount) * 100.00 ) / 100.00) ])
                     try await currentUserSnapshot.reference.updateData([currrencyKeyForFirebase: (round( (currentUsersBalance - transferAmount) * 100.00 ) / 100.00) ])
                     
@@ -214,7 +238,7 @@ class TransferToSomeoneViewController: UIViewController {
     }
     
     // MARK: - Actions
-
+    
     @IBAction func checkTapped(_ sender: UIButton) {
         guard let receiversId = receiversIbanTextField.text else { return }
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
@@ -223,8 +247,8 @@ class TransferToSomeoneViewController: UIViewController {
             Task {
                 do {
                     guard let _ = try await getReceiversDataSnapshot(id: receiversId) else { return }                } catch {
-                    AlertWorker.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.generalError, forViewController: self)
-                }
+                        AlertWorker.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.generalError, forViewController: self)
+                    }
             }
         }
     }
