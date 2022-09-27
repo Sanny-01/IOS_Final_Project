@@ -101,47 +101,6 @@ class PasswordChangeViewController: UIViewController {
         bottomLine.backgroundColor = color.cgColor
     }
     
-    @IBAction func currentPasswordEditingDidBegin(_ sender: UITextField) {
-        editingDidBeginActionsOnTextField(textfield: currentPasswordTextField, titleLabel: currentPasswordLabel, textFieldBottomLine: currentPasswordBottomLine)
-    }
-    
-    @IBAction func currentPasswordEditingDidEnd(_ sender: UITextField) {
-        editingDidEndActionsOnTextField(textfield: currentPasswordTextField, titleLabel: currentPasswordLabel, textFieldBottomLine: currentPasswordBottomLine, placeholderText: Constants.Placeholder.currentPassword)
-    }
-    
-    @IBAction func newPasswordEditingChanged(_ sender: UITextField) {
-        validateNewPassword()
-    }
-    
-    
-    @IBAction func newPasswordEditingDidBegin(_ sender: UITextField) {
-        editingDidBeginActionsOnTextField(textfield: newPasswordTextField, titleLabel: newPasswordLabel, textFieldBottomLine: newPasswordBottomLine)
-    }
-    
-    
-    @IBAction func newPasswordEditingDidEnd(_ sender: UITextField) {
-        editingDidEndActionsOnTextField(textfield: newPasswordTextField, titleLabel: newPasswordLabel, textFieldBottomLine: newPasswordBottomLine, placeholderText: Constants.Placeholder.newPassword)
-    }
-    
-    @IBAction func repeatPasswordEditingChanged(_ sender: UITextField) {
-        guard let newPassword = newPasswordTextField.text else { return }
-        guard let repeatPassword = repeatPasswordTextField.text else { return }
-        
-        if !validatePasswordsMatching(password: newPassword, repeatPassword: repeatPassword) {
-            repeatPasswordErrorLabel.text = Constants.ErrorMessages.passwordsDoNotMatch
-        } else {
-            repeatPasswordErrorLabel.text = ""
-        }
-    }
-    
-    @IBAction func repeatPasswordEditingDidBegin(_ sender: UITextField) {
-        editingDidBeginActionsOnTextField(textfield: repeatPasswordTextField, titleLabel: repeatPasswordLabel, textFieldBottomLine: repeatPasswordBottomLine)
-    }
-    
-    @IBAction func repeatPasswordEditingDidEnd(_ sender: UITextField) {
-        editingDidEndActionsOnTextField(textfield: repeatPasswordTextField, titleLabel: repeatPasswordLabel, textFieldBottomLine: repeatPasswordBottomLine, placeholderText: Constants.Placeholder.repeatPassword)
-    }
-    
     private func editingDidBeginActionsOnTextField(textfield: UITextField, titleLabel: UILabel, textFieldBottomLine: CALayer) {
         textfield.placeholder = ""
         titleLabel.alpha = 1
@@ -155,49 +114,6 @@ class PasswordChangeViewController: UIViewController {
         if text.isEmpty {
             textfield.placeholder = placeholderText
             titleLabel.alpha = 0
-        }
-    }
-    
-    @IBAction func saveButtonTapped(_ sender: UIButton) {
-        makeErrorLabelsEmpty()
-
-        guard let currentPassword = currentPasswordTextField.text else { return }
-        guard let newPassword = newPasswordTextField.text else { return }
-        guard let repeatPassword = repeatPasswordTextField.text else { return }
-        
-        let emptinessCheck = validateFieldsForEmptiness(currentPassword: currentPassword, newPassword: newPassword, repeatPasswor: repeatPassword)
-        
-        if emptinessCheck {
-            let requirementsCheck = validatePassword(currentPassword: currentPassword, newPassword: newPassword, repeatPassword: repeatPassword)
-            
-            if requirementsCheck {
-                let user = Auth.auth().currentUser
-                guard let email = user?.email else { return }
-                
-                let credential = EmailAuthProvider.credential(withEmail: email, password: currentPassword)
-                
-                user?.reauthenticate(with: credential, completion: { (result, error) in
-                    if error != nil {
-                        if let err = error as NSError? {
-                            let errCode = AuthErrorCode(_nsError: err)
-                            switch errCode.code {
-                            case .wrongPassword:
-                                AlertWorker.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.incorrectPassword, forViewController: self)
-                            default:
-                                AlertWorker.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.generalError, forViewController: self)
-                            }
-                        }
-                    } else {
-                        Auth.auth().currentUser?.updatePassword(to: newPassword) { error in
-                            if error != nil {
-                                AlertWorker.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.generalError, forViewController: self)
-                            } else {
-                                self.navigationController?.popToRootViewController(animated: true)
-                            }
-                        }
-                    }
-                })
-            }
         }
     }
     
@@ -289,5 +205,91 @@ class PasswordChangeViewController: UIViewController {
         currentPasswordErrorLabel.text = ""
         newPasswordErrorLabel.text = ""
         repeatPasswordErrorLabel.text = ""
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func currentPasswordEditingDidBegin(_ sender: UITextField) {
+        editingDidBeginActionsOnTextField(textfield: currentPasswordTextField, titleLabel: currentPasswordLabel, textFieldBottomLine: currentPasswordBottomLine)
+    }
+    
+    @IBAction func currentPasswordEditingDidEnd(_ sender: UITextField) {
+        editingDidEndActionsOnTextField(textfield: currentPasswordTextField, titleLabel: currentPasswordLabel, textFieldBottomLine: currentPasswordBottomLine, placeholderText: Constants.Placeholder.currentPassword)
+    }
+    
+    @IBAction func newPasswordEditingChanged(_ sender: UITextField) {
+        validateNewPassword()
+    }
+    
+    
+    @IBAction func newPasswordEditingDidBegin(_ sender: UITextField) {
+        editingDidBeginActionsOnTextField(textfield: newPasswordTextField, titleLabel: newPasswordLabel, textFieldBottomLine: newPasswordBottomLine)
+    }
+    
+    
+    @IBAction func newPasswordEditingDidEnd(_ sender: UITextField) {
+        editingDidEndActionsOnTextField(textfield: newPasswordTextField, titleLabel: newPasswordLabel, textFieldBottomLine: newPasswordBottomLine, placeholderText: Constants.Placeholder.newPassword)
+    }
+    
+    @IBAction func repeatPasswordEditingChanged(_ sender: UITextField) {
+        guard let newPassword = newPasswordTextField.text else { return }
+        guard let repeatPassword = repeatPasswordTextField.text else { return }
+        
+        if !validatePasswordsMatching(password: newPassword, repeatPassword: repeatPassword) {
+            repeatPasswordErrorLabel.text = Constants.ErrorMessages.passwordsDoNotMatch
+        } else {
+            repeatPasswordErrorLabel.text = ""
+        }
+    }
+    
+    @IBAction func repeatPasswordEditingDidBegin(_ sender: UITextField) {
+        editingDidBeginActionsOnTextField(textfield: repeatPasswordTextField, titleLabel: repeatPasswordLabel, textFieldBottomLine: repeatPasswordBottomLine)
+    }
+    
+    @IBAction func repeatPasswordEditingDidEnd(_ sender: UITextField) {
+        editingDidEndActionsOnTextField(textfield: repeatPasswordTextField, titleLabel: repeatPasswordLabel, textFieldBottomLine: repeatPasswordBottomLine, placeholderText: Constants.Placeholder.repeatPassword)
+    }
+    
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
+        makeErrorLabelsEmpty()
+
+        guard let currentPassword = currentPasswordTextField.text else { return }
+        guard let newPassword = newPasswordTextField.text else { return }
+        guard let repeatPassword = repeatPasswordTextField.text else { return }
+        
+        let emptinessCheck = validateFieldsForEmptiness(currentPassword: currentPassword, newPassword: newPassword, repeatPasswor: repeatPassword)
+        
+        if emptinessCheck {
+            let requirementsCheck = validatePassword(currentPassword: currentPassword, newPassword: newPassword, repeatPassword: repeatPassword)
+            
+            if requirementsCheck {
+                let user = Auth.auth().currentUser
+                guard let email = user?.email else { return }
+                
+                let credential = EmailAuthProvider.credential(withEmail: email, password: currentPassword)
+                
+                user?.reauthenticate(with: credential, completion: { (result, error) in
+                    if error != nil {
+                        if let err = error as NSError? {
+                            let errCode = AuthErrorCode(_nsError: err)
+                            switch errCode.code {
+                            case .wrongPassword:
+                                AlertWorker.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.incorrectPassword, forViewController: self)
+                            default:
+                                AlertWorker.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.generalError, forViewController: self)
+                            }
+                        }
+                    } else {
+                        Auth.auth().currentUser?.updatePassword(to: newPassword) { error in
+                            if error != nil {
+                                AlertWorker.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.generalError, forViewController: self)
+                            } else {
+                                self.navigationController?.popToRootViewController(animated: true)
+                            }
+                        }
+                    }
+                })
+            }
+        }
     }
 }

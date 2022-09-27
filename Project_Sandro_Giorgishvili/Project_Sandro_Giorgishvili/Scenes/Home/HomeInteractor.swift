@@ -45,7 +45,8 @@ extension HomeInteractor: HomeBusinessLogic {
                 
                 presenter?.presentExchangeRates(response: Home.GetExchangeRates.Response(exchangeRate: exchangeRates))
             } catch {
-                print("Could not load user data")
+                presenter?.presentHideSpinner(response: Home.HideSpinner.Response())
+                presenter?.presentAlert(response: Home.ShowAlert.Response(title: nil, message: Constants.ErrorMessages.FirestoreErrorMessages.exchangeRatesNotLoaded))
             }
         }
     }
@@ -58,7 +59,7 @@ extension HomeInteractor: HomeBusinessLogic {
                 
                 presenter?.presentUserBalance(response: Home.GetUserBalance.Response(balance: userBalance))
             } catch {
-                print("Could not load user data")
+                presenter?.presentAlert(response: Home.ShowAlert.Response(title: nil, message: Constants.ErrorMessages.FirestoreErrorMessages.userDataNotLoaded))
             }
         }
     }

@@ -37,7 +37,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsz-AL-9lo" userLabel="Choose Currency View">
                                 <rect key="frame" x="0.0" y="114" width="428" height="204"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kt2-Af-tVZ" userLabel="From">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kt2-Af-tVZ" userLabel="From View">
                                         <rect key="frame" x="0.0" y="0.0" width="428" height="89"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kNa-WF-vDO">
@@ -89,7 +89,7 @@
                                             <constraint firstItem="kNa-WF-vDO" firstAttribute="top" secondItem="kt2-Af-tVZ" secondAttribute="top" constant="10" id="ycV-I9-sBJ"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jpz-Bf-RSj" userLabel="Separator">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jpz-Bf-RSj" userLabel="Separator View">
                                         <rect key="frame" x="15" y="104" width="398" height="1"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.up.arrow.down.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lyw-Ip-VO2">
@@ -105,7 +105,7 @@
                                             <constraint firstItem="lyw-Ip-VO2" firstAttribute="centerX" secondItem="jpz-Bf-RSj" secondAttribute="centerX" id="mbf-PD-4II"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSC-uN-pc5" userLabel="To">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSC-uN-pc5" userLabel="To View">
                                         <rect key="frame" x="0.0" y="115" width="428" height="89"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJf-uT-X4N">

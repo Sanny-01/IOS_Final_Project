@@ -193,7 +193,7 @@
                                     <constraint firstItem="HMC-uX-Igm" firstAttribute="top" secondItem="K89-d3-SQA" secondAttribute="bottom" id="yRa-WY-bas"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Xp-WR-EQu">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Xp-WR-EQu" userLabel="Amount View">
                                 <rect key="frame" x="0.0" y="396" width="414" height="70"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KzI-Q6-lUq">

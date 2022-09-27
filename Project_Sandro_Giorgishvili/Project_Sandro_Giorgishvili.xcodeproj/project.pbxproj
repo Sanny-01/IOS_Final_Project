@@ -268,6 +268,14 @@
 			path = Transfers;
 			sourceTree = "<group>";
 		};
+		3BB99D9528DAFC7700BF6271 /* NetworkWorker */ = {
+			isa = PBXGroup;
+			children = (
+				3BDF474C28C5065300ABF484 /* NetworkWorker.swift */,
+			);
+			path = NetworkWorker;
+			sourceTree = "<group>";
+		};
 		3BBFA51028CBE5900092B944 /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,7 +294,6 @@
 		3BECBC6B2896EF3500ACFEC5 = {
 			isa = PBXGroup;
 			children = (
-				3BDF474C28C5065300ABF484 /* NetworkWorker.swift */,
 				3BECBC762896EF3500ACFEC5 /* Project_Sandro_Giorgishvili */,
 				3BECBC752896EF3500ACFEC5 /* Products */,
 				1FF050499FE0FFE6D05DA88E /* Pods */,
@@ -305,6 +312,7 @@
 		3BECBC762896EF3500ACFEC5 /* Project_Sandro_Giorgishvili */ = {
 			isa = PBXGroup;
 			children = (
+				3BB99D9528DAFC7700BF6271 /* NetworkWorker */,
 				3BB99D9128DA75B700BF6271 /* UserFirestoreModel */,
 				3BB99D9028DA75A700BF6271 /* Constants */,
 				3BB99D8F28DA759B00BF6271 /* Helper */,

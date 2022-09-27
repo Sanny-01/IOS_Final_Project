@@ -118,7 +118,7 @@ class InternalTransfersViewController: UIViewController {
                 self?.balanceInUsd = userData.USD
                 self?.balanceInEur = userData.EUR
             } else {
-                AlertWorker.showAlertWithOkButtonAndDismissPage(title: nil, message: Constants.ErrorMessages.TransferErrors.couldNotGetExchangeRates, forViewController: self ?? InternalTransfersViewController())
+                AlertWorker.showAlertWithOkButtonAndDismissPage(title: nil, message: Constants.ErrorMessages.TransferErrors.couldNotGetExchangeRates, forViewController: InternalTransfersViewController())
             }
         }
     }
@@ -292,12 +292,14 @@ class InternalTransfersViewController: UIViewController {
                 
                 guard  let userUID = Auth.auth().currentUser?.uid else { return }
                 
-                Firestore.firestore().collection("users").document(userUID).getDocument { [weak self] snapshot, error in
+                Firestore.firestore().collection("users").document(userUID).getDocument { [weak self] (snapshot, error) in
                     if error == nil {
                         snapshot?.reference.updateData( [fromBalanceKeyInFirestore: (round( (fromCurrencyBalance - sellAmount) * 100.00) / 100.00)] )
                         snapshot?.reference.updateData( [toBalanceKeyInFirestore: (round ( (toCurrencyBalance + buyAmount) * 100.00 ) / 100.00)] )
                         
-                        self?.dismiss(animated: true, completion: nil)
+                        guard let self = self else { return }
+                        
+                        AlertWorker.showAlertWithOkButtonAndDismissPage(title: nil, message: Constants.SuccessMessages.TransferSuccess.successfullTransfer, forViewController: self)
                     }
                 }
             }
@@ -354,7 +356,7 @@ extension InternalTransfersViewController: UIPickerViewDataSource, UIPickerViewD
             balanceForToLbl.text = "\(getToCurrencyBalance() ?? 0.00)"
             toImageView.image = getImage(currency: availableCurrencies[row])
         default:
-            print("Error occured")
+            return 
         }
     }
 }

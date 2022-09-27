@@ -4,7 +4,6 @@
 //
 //  Created by TBC on 17.09.22.
 
-
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
@@ -58,7 +57,7 @@ final class SignUpInteractor: SignUpDataStore {
         }
         
         if password.count < 8 {
-            presenter?.presentAlertWithMessage(response: SignUp.DisplayAlert.Response(title: nil, errorMessage: Constants.ErrorMessages.passwordCriteriaError))
+            presenter?.presentAlert(response: SignUp.DisplayAlert.Response(title: nil, errorMessage: Constants.ErrorMessages.passwordCriteriaError))
             
             return false
         }
@@ -69,7 +68,7 @@ final class SignUpInteractor: SignUpDataStore {
         requirementsPassed += checkPasswordWithExpression(expression: Constants.Regex.mustContainSymbol, password: password) ? 1 : 0
         
         if requirementsPassed < 3 {
-            presenter?.presentAlertWithMessage(response: SignUp.DisplayAlert.Response(title: nil, errorMessage: Constants.ErrorMessages.passwordCriteriaError))
+            presenter?.presentAlert(response: SignUp.DisplayAlert.Response(title: nil, errorMessage: Constants.ErrorMessages.passwordCriteriaError))
             
             return false
         }
@@ -87,29 +86,6 @@ final class SignUpInteractor: SignUpDataStore {
         return predicate.evaluate(with: password)
     }
     
-    private func setUsertDataToFirestore(username: String, email: String,result: AuthDataResult) {
-        let db = Firestore.firestore()
-        
-        let gel = Int.random(in: 1...1000)
-        let usd = Int.random(in: 1...100)
-        let eur = Int.random(in: 1...50)
-        
-        let data: [String : Any] = [
-            UserInformation.firestoreDataKeys.username.rawValue: username,
-            UserInformation.firestoreDataKeys.email.rawValue: email,
-            UserInformation.firestoreDataKeys.userId.rawValue: result.user.uid,
-            UserInformation.firestoreDataKeys.GEL.rawValue: gel,
-            UserInformation.firestoreDataKeys.USD.rawValue: usd,
-            UserInformation.firestoreDataKeys.EUR.rawValue: eur
-        ]
-        
-        db.collection("users").document(result.user.uid).setData(data) { error in
-            if error != nil {
-                print("Could not upload dataa to Firebase")
-            }
-        }
-    }
-    
     private func signUserOut() {
         do {
             try Auth.auth().signOut()
@@ -118,8 +94,6 @@ final class SignUpInteractor: SignUpDataStore {
         }
     }
 }
-
-//MARK: - SignUpBusinessLogic
 
 extension SignUpInteractor: SignUpBusinessLogic {
     func registerNewUser(request: SignUp.Registration.Request) {
@@ -139,24 +113,22 @@ extension SignUpInteractor: SignUpBusinessLogic {
                 
                 Task {
                     do {
-                        let authResult = try await worker?.registerUser(userCredentials: SignUp.RegisterUser.Request(email: email, password: password))
-                        
-                        guard let result = authResult else { return }
-                        setUsertDataToFirestore(username: username, email: email, result: result)
+                        let authResult = try await worker?.registerUser(userCredentials: SignUp.RegisterUser.Request(username: username, email: email, password: password))
                         
                         signUserOut()
                         
                         presenter?.presentSuccessfullRegistration(response: SignUp.Success.Response())
                     } catch {
+                        print(error)
                         if let err = error as NSError? {
                             let errCode = AuthErrorCode(_nsError: err)
                             switch errCode.code {
                             case .emailAlreadyInUse:
-                                presenter?.presentAlertWithMessage(response: SignUp.DisplayAlert.Response(title: nil, errorMessage: Constants.ErrorMessages.emailAlreadyRegistered))
+                                presenter?.presentAlert(response: SignUp.DisplayAlert.Response(title: nil, errorMessage: Constants.ErrorMessages.emailAlreadyRegistered))
                             case .invalidEmail:
-                                presenter?.presentAlertWithMessage(response: SignUp.DisplayAlert.Response(title: nil, errorMessage: Constants.ErrorMessages.invalidEmailAddress))
+                                presenter?.presentAlert(response: SignUp.DisplayAlert.Response(title: nil, errorMessage: Constants.ErrorMessages.invalidEmailAddress))
                             default:
-                                presenter?.presentAlertWithMessage(response: SignUp.DisplayAlert.Response(title: nil, errorMessage: Constants.ErrorMessages.emailAlreadyRegistered))
+                                presenter?.presentAlert(response: SignUp.DisplayAlert.Response(title: nil, errorMessage: Constants.ErrorMessages.generalError))
                             }
                         }
                     }

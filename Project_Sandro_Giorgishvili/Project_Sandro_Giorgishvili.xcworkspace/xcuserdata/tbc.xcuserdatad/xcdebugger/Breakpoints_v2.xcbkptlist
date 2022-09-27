@@ -367,22 +367,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C4B83F0C-0E7F-48AD-A1C3-9F3E7096858E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Project_Sandro_Giorgishvili/VIewControllers/TransferToSomeoneViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
-            landmarkName = "getReceiversDataSnapshot(id:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "C8B53377-6DBA-47F0-B25A-3BDD09A2B773"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -393,22 +377,6 @@
             startingLineNumber = "128"
             endingLineNumber = "128"
             landmarkName = "getReceiversDataSnapshot(id:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4308467A-CD86-4453-9700-8AEE55C8FE05"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Project_Sandro_Giorgishvili/VIewControllers/TransferToSomeoneViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "requestTransaction(fromUser:toUser:currency:amount:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -543,38 +511,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A0E762A1-4DFF-4F13-AE80-C00449DD994B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Project_Sandro_Giorgishvili/Scenes/SignUp/SignUpInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "validatePassword(password:repeatPassword:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EF58316A-4A9A-4543-9638-9B0FDE82E975"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Project_Sandro_Giorgishvili/Scenes/SignUp/SignUpInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "validateFieldsForEmptiness(username:email:password:repeatPassword:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A61A4549-C04B-4E83-813E-41EABE5B889E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -607,118 +543,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AD7EDEB8-F4EC-4FC6-8D41-5682CA2858FC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Project_Sandro_Giorgishvili/Scenes/SignUp/SignUpWorker.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "registerUser(userCredentials:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "87E9BE52-5E2D-4EFA-8B69-1420F20B4CBD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Project_Sandro_Giorgishvili/Scenes/SignUp/SignUpInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "registerNewUser(request:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FD977E97-452B-4E19-8DEF-58F088162391"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Project_Sandro_Giorgishvili/Scenes/SignUp/SignUpInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "validatePassword(password:repeatPassword:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2435CED8-05E7-4C3E-8391-D1373955AB25"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Project_Sandro_Giorgishvili/Scenes/SignUp/SignUpInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "setUsertDataToFirestore(username:email:result:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "490F4C13-ADD2-41AF-BA08-5DF38D786E17"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Project_Sandro_Giorgishvili/Scenes/SignUp/SignUpInteractor.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "registerNewUser(request:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "490F4C13-ADD2-41AF-BA08-5DF38D786E17 - 1536f4c521537d9a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Sendable () async -&gt; () in Project_Sandro_Giorgishvili.SignUpInteractor.registerNewUser(request: Project_Sandro_Giorgishvili.SignUp.Registration.Request) -&gt; ()"
-                  moduleName = "Project_Sandro_Giorgishvili"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tbc/Desktop/IOS_Final_Project/Project_Sandro_Giorgishvili/Project_Sandro_Giorgishvili/Scenes/SignUp/SignUpInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "144"
-                  endingLineNumber = "144"
-                  offsetFromSymbolStart = "695">
-               </Location>
-               <Location
-                  uuid = "490F4C13-ADD2-41AF-BA08-5DF38D786E17 - fd48bfd6dfacc7fb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) await resume partial function for closure #1 @Sendable () async -&gt; () in Project_Sandro_Giorgishvili.SignUpInteractor.registerNewUser(request: Project_Sandro_Giorgishvili.SignUp.Registration.Request) -&gt; ()"
-                  moduleName = "Project_Sandro_Giorgishvili"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tbc/Desktop/IOS_Final_Project/Project_Sandro_Giorgishvili/Project_Sandro_Giorgishvili/Scenes/SignUp/SignUpInteractor.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "144"
-                  endingLineNumber = "144"
-                  offsetFromSymbolStart = "457">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "4A9D48BC-B165-4621-AE3F-6ACEA28E843C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -726,8 +550,8 @@
             filePath = "Project_Sandro_Giorgishvili/Scenes/Home/HomeInteractor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "getUserBalace(request:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -774,8 +598,8 @@
             filePath = "Project_Sandro_Giorgishvili/Scenes/Home/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -869,8 +693,8 @@
             filePath = "Project_Sandro_Giorgishvili/Scenes/Home/HomeViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -888,6 +712,22 @@
             startingLineNumber = "26"
             endingLineNumber = "26"
             landmarkName = "returnFirebaseKey(forText:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89B1038D-3AB0-4B49-BAC6-55F9C48E22DB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Project_Sandro_Giorgishvili/Scenes/Home/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

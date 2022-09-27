@@ -86,7 +86,7 @@ class TransferToSomeoneViewController: UIViewController {
                 self?.balanceInUsd = userData.USD
                 self?.balanceInEur = userData.EUR
             } else {
-                AlertWorker.showAlertWithOkButtonAndDismissPage(title: nil, message: Constants.ErrorMessages.TransferErrors.couldNotGetExchangeRates, forViewController: self ?? TransferToSomeoneViewController())
+                AlertWorker.showAlertWithOkButtonAndDismissPage(title: nil, message: Constants.ErrorMessages.TransferErrors.couldNotGetExchangeRates, forViewController: TransferToSomeoneViewController())
             }
         }
     }
@@ -127,6 +127,7 @@ class TransferToSomeoneViewController: UIViewController {
         guard let snapshotData = snapshot.data()  else {
             hideReceiverView()
             AlertWorker.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.incorrectIbanCode, forViewController: self)
+            
             return nil
         }
         
@@ -173,13 +174,13 @@ class TransferToSomeoneViewController: UIViewController {
     private func requestTransaction(fromUser: String, toUser: String, currency: String, amount: String) {
         Task {
             do {
-                
                 guard let transferAmount = Double(amount) else { return }
                 
                 guard let receiversSnapshot = try await getReceiversDataSnapshot(id: toUser) else  { return }
                 guard let receiversData = receiversSnapshot.data() else { return }
                 guard let receiversBalance = receiversData[currency] as? Double else {
                     AlertWorker.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.transactionProccessFailed, forViewController: self)
+                    
                     return
                 }
                 
@@ -187,6 +188,7 @@ class TransferToSomeoneViewController: UIViewController {
                 guard let currentUserData = currentUserSnapshot.data() else { return }
                 guard let currentUsersBalance = currentUserData[currency] as? Double  else {
                     AlertWorker.showAlertWithOkButton(title: nil, message: Constants.ErrorMessages.TransferErrors.transactionProccessFailed, forViewController: self)
+                    
                     return
                 }
                 
@@ -213,7 +215,7 @@ class TransferToSomeoneViewController: UIViewController {
         case "EUR":
             currencyImageView.image = UIImage(systemName: "eurosign.circle")
         default:
-            print("Did not assign any image")
+            return
         }
     }
     

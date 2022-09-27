@@ -57,8 +57,19 @@ enum SignUp
     
     enum RegisterUser {
         struct Request {
+            let username: String
             let email: String
             let password: String
+        }
+        
+        struct Response { }
+        
+        struct ViewModel { }
+    }
+    
+    enum SetUserDataToFirestore {
+        struct Request {
+            let data: [String: Any]
         }
         
         struct Response { }

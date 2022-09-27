@@ -8,12 +8,15 @@
 import Foundation
 
 class Constants {
+    // MARK: - Placeholder Messages
     
-    struct Placeholder {
+    enum Placeholder {
         static let currentPassword = "Current Password"
         static let newPassword = "New Password"
         static let repeatPassword = "Repeat Password"
     }
+    
+    // MARK: - Storyboard Ids
     
     enum StoryboardIds {
         static let signUpViewController = "SignUpViewController"
@@ -26,6 +29,8 @@ class Constants {
         static let transferToSomeoneViewController = "TransferToSomeoneViewController"
     }
     
+    // MARK: - Storyboard Names
+    
     enum StoryBoards {
         static let signUp = "SignUp"
         static let home = "HomePage"
@@ -36,6 +41,14 @@ class Constants {
         static let internalTransfers = "InternalTransfers"
         static let transferToSomeone = "TransferToSomeone"
     }
+    
+    enum CellNames {
+        static let currencyCell = "CurrencyCell"
+        static let profileSettingsCell = "ProfileSettingsCell"
+        static let transferCell = "TransferCell"
+    }
+    
+    // MARK: - Error Messages
     
     enum ErrorMessages {
         static let emptyField = "This field should not be left empty"
@@ -48,10 +61,13 @@ class Constants {
         static let generalError = "An error occured. Please try again later."
         static let passwordCriteriaError = "Password is not strong enough. Make sure it covers at least 3 of these 4 criteria. Must contian at least 1 uppercase, 1 lowercase, 1 symbol and be at least 8 characters long."
         
+        // MARK: - User Registration
+        
         enum UserRegistration {
-            static let incorrectPassword = "Password is not correct! Please, try again."
             static let samePasswords = "New password can not be the same as current."
         }
+        
+        // MARK: - Tranfer Errors
         
         enum TransferErrors {
             static let notEnoughMoney = "You do not have enough money on balance."
@@ -65,13 +81,31 @@ class Constants {
             static let couldNotGetExchangeRates = "Could not load exchange rates. Please, try again later."
             static let couldNotGetUserBalance = "Could not load user balance. Please, try again later."
         }
+        
+        // MARK: - Firebase Error Messages
+        
+        enum FirestoreErrorMessages {
+            static let userDataNotLoaded = "Could not load user data."
+            static let userDataNotUploaded = "Could not upload data to Firestore."
+            static let exchangeRatesNotLoaded = "Could not load exchange rates."
+        }
+        
+        // MARK: - Firebase Error Messages
+        
+        enum FirebaseErrors {
+            static let userAlreadyLoggedOut = "User is Already Logged Out."
+        }
     }
+    
+    // MARK: - Success Messages
     
     enum SuccessMessages {
         enum TransferSuccess {
             static let successfullTransfer = "Successfully transfered."
         }
     }
+    
+    // MARK: - Regexes
     
     enum Regex {
         static let mustContainLowercase = "^(?=.*[a-z]).{1,}$"

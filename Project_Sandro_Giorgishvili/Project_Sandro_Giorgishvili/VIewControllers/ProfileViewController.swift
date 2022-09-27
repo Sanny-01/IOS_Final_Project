@@ -91,11 +91,11 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = profileSettingsTableView.dequeueReusableCell(withIdentifier: "ProfileSettingsCell", for: indexPath) as! ProfileSettingsCell
+        let cell = profileSettingsTableView.dequeueReusableCell(withIdentifier: Constants.CellNames.profileSettingsCell, for: indexPath) as! ProfileSettingsCell
         cell.settingIconImage.image = UIImage(systemName: iconImageNames[indexPath.row])
         cell.settingNameLbl.text = settingNames[indexPath.row]
         
-        if indexPath.row == 0 || indexPath.row == 1 {
+        if indexPath.row != 2 {
             cell.isUserInteractionEnabled = false
         }
         

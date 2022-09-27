@@ -13,7 +13,7 @@ protocol SignUpDisplayLogic: AnyObject {
     func displayEmptyPassword(ViewModel: SignUp.DisplayErrorLabel.ViewModel)
     func displayEmptyRepeatPassword(ViewModel: SignUp.DisplayErrorLabel.ViewModel)
     func displayPasswordsNotMatch(ViewModel: SignUp.DisplayErrorLabel.ViewModel)
-    func displayAlertWithMessage(ViewModel: SignUp.DisplayAlert.ViewModel)
+    func displayAlert(ViewModel: SignUp.DisplayAlert.ViewModel)
     func displaySuccessfullRegistration(ViewModel: SignUp.Success.ViewModel)
 }
 
@@ -107,7 +107,7 @@ extension SignUpViewController: SignUpDisplayLogic {
         repeatPasswordErrorLabel.text = ""
     }
     
-    func displayAlertWithMessage(ViewModel: SignUp.DisplayAlert.ViewModel) {
+    func displayAlert(ViewModel: SignUp.DisplayAlert.ViewModel) {
         AlertWorker.showAlertWithOkButton(title: ViewModel.title, message: ViewModel.errorMessage, forViewController: self)
     }
     

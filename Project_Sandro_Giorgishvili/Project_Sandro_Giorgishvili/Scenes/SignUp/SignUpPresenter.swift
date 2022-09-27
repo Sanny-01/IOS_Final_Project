@@ -13,7 +13,7 @@ protocol SignUpPresentationLogic {
     func presentEmptyPasswordrror(response: SignUp.DisplayErrorLabel.Response)
     func presentEmptyRepeatPasswordError(response: SignUp.DisplayErrorLabel.Response)
     func presentPasswordsNotMatch(response: SignUp.DisplayErrorLabel.Response)
-    func presentAlertWithMessage(response: SignUp.DisplayAlert.Response)
+    func presentAlert(response: SignUp.DisplayAlert.Response)
     func presentSuccessfullRegistration(response: SignUp.Success.Response)
 }
 
@@ -38,8 +38,8 @@ extension SignUpPresenter: SignUpPresentationLogic {
         viewController?.displayEmptyErrorLabels(ViewModel: SignUp.EmptyErrorLabels.ViewModel())
     }
     
-    func presentAlertWithMessage(response: SignUp.DisplayAlert.Response) {
-        viewController?.displayAlertWithMessage(ViewModel: SignUp.DisplayAlert.ViewModel(title: response.title, errorMessage: response.errorMessage))
+    func presentAlert(response: SignUp.DisplayAlert.Response) {
+        viewController?.displayAlert(ViewModel: SignUp.DisplayAlert.ViewModel(title: response.title, errorMessage: response.errorMessage))
     }
     
     func presentEmptyEmailError(response: SignUp.DisplayErrorLabel.Response) {

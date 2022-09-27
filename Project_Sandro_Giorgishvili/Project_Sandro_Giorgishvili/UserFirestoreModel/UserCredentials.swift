@@ -6,6 +6,8 @@
 //
 
 import Foundation
+ 
+// MARK: - User Credentials Models
 
 struct UserCredentials {
     let username: String
@@ -29,6 +31,15 @@ struct UserBalance {
         self.USD = dictionary["USD"] as? Double ?? 0.00
         self.EUR = dictionary["EUR"] as? Double ?? 0.00
     }
+}
+
+struct UserInfoModel {
+    let username: String
+    let email: String
+    let id: String
+    let GEL: Double
+    let USD: Double
+    let EUR: Double
 }
 
 enum UserInformation {

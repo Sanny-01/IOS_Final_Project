@@ -10,6 +10,8 @@ protocol HomePresentationLogic {
     func presentUserBalance(response: Home.GetUserBalance.Response)
     func presentExchangeRates(response: Home.GetExchangeRates.Response)
     func presentTintColorToTabBarComponent(response: Home.TabBarItemTapped.Response)
+    func presentAlert(response: Home.ShowAlert.Response)
+    func presentHideSpinner(response: Home.HideSpinner.Response)
 }
 
 final class HomePresenter {
@@ -19,6 +21,14 @@ final class HomePresenter {
 }
 
 extension HomePresenter: HomePresentationLogic {
+    func presentHideSpinner(response: Home.HideSpinner.Response) {
+        viewController?.displayHideSpinner(viewModel: Home.HideSpinner.ViewModel())
+    }
+    
+    func presentAlert(response: Home.ShowAlert.Response) {
+        viewController?.displayAlert(viewModel: Home.ShowAlert.ViewModel(title: response.title, message: response.message))
+    }
+    
     func presentTintColorToTabBarComponent(response: Home.TabBarItemTapped.Response) {
         viewController?.displayTabBarItemPage(viewModel: Home.TabBarItemTapped.ViewModel(tag: response.tag))
     }

@@ -81,9 +81,11 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="qwd-op-d4z" firstAttribute="width" secondItem="Ldv-oG-Kss" secondAttribute="width" id="885-FQ-8S2"/>
+                                            <constraint firstItem="qwd-op-d4z" firstAttribute="leading" secondItem="SQL-4q-6lf" secondAttribute="leading" id="DNN-CW-JfO"/>
                                             <constraint firstItem="qwd-op-d4z" firstAttribute="height" secondItem="Ldv-oG-Kss" secondAttribute="height" id="izv-cb-2IU"/>
                                             <constraint firstItem="4LY-2S-0lK" firstAttribute="width" secondItem="VaA-Kg-hgo" secondAttribute="width" id="oES-fd-t5p"/>
                                             <constraint firstItem="4LY-2S-0lK" firstAttribute="height" secondItem="VaA-Kg-hgo" secondAttribute="height" id="pld-8a-ntj"/>
+                                            <constraint firstAttribute="trailing" secondItem="qwd-op-d4z" secondAttribute="trailing" id="s5A-v2-7hL"/>
                                             <constraint firstItem="qwd-op-d4z" firstAttribute="top" secondItem="SQL-4q-6lf" secondAttribute="top" id="sU2-KP-LVZ"/>
                                         </constraints>
                                     </stackView>

@@ -50,4 +50,30 @@ enum Home
             let tag: Int
         }
     }
+    
+    enum ShowAlert
+    {
+        struct Request {
+            let tag: Int
+        }
+        
+        struct Response {
+            let title: String?
+            let message: String
+        }
+        
+        struct ViewModel {
+            let title: String?
+            let message: String
+        }
+    }
+    
+    enum HideSpinner
+    {
+        struct Request { }
+        
+        struct Response { }
+        
+        struct ViewModel { }
+    }
 }

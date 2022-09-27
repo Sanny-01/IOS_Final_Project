@@ -11,6 +11,8 @@ protocol HomeDisplayLogic: AnyObject {
     func displayUserBalance(viewModel: Home.GetUserBalance.ViewModel)
     func displayExchangeRates(viewModel: Home.GetExchangeRates.ViewModel)
     func displayTabBarItemPage(viewModel: Home.TabBarItemTapped.ViewModel)
+    func displayAlert(viewModel: Home.ShowAlert.ViewModel)
+    func displayHideSpinner(viewModel: Home.HideSpinner.ViewModel)
 }
 
 final class HomeViewController: UIViewController {
@@ -186,7 +188,7 @@ final class HomeViewController: UIViewController {
             transfersImageView.tintColor = .white
             profileImageView.tintColor = .midnightBlue
         default:
-            print("Incorrect tag id")
+            return
         }
     }
     
@@ -248,6 +250,16 @@ final class HomeViewController: UIViewController {
 // MARK: - HomeDisplayLogic
 
 extension HomeViewController: HomeDisplayLogic {
+    func displayHideSpinner(viewModel: Home.HideSpinner.ViewModel) {
+        DispatchQueue.main.async { [weak self] in
+            self?.spinner.stopAnimating()
+        }
+    }
+    
+    func displayAlert(viewModel: Home.ShowAlert.ViewModel) {
+        AlertWorker.showAlertWithOkButton(title: viewModel.title, message: viewModel.message, forViewController: self)
+    }
+    
     func displayTabBarItemPage(viewModel: Home.TabBarItemTapped.ViewModel) {
         setTintColorAndAnimateTapToTabBarItem(tag: viewModel.tag)
         
@@ -282,7 +294,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = exchangeRatesTableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath) as! CurrencyCell
+        let cell = exchangeRatesTableView.dequeueReusableCell(withIdentifier: Constants.CellNames.currencyCell, for: indexPath) as! CurrencyCell
         
         cell.countryFlag.image = UIImage(named: countryFlagNames[indexPath.row])
         cell.currencyShortNameLbl.text = countryCurrency[indexPath.row]

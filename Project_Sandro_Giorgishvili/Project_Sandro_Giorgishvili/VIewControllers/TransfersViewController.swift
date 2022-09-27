@@ -37,7 +37,7 @@ extension TransfersViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = transfersTableView.dequeueReusableCell(withIdentifier: "TransferCell", for: indexPath) as! TransferCell
+        let cell = transfersTableView.dequeueReusableCell(withIdentifier: Constants.CellNames.transferCell, for: indexPath) as! TransferCell
         cell.transferNameLbl.text = transfers[indexPath.row]
         
         return cell
@@ -62,7 +62,7 @@ extension TransfersViewController: UITableViewDelegate {
 
             present(transferToSomeoneViewController, animated: true)
         default:
-            print("Error occured")
+           return
         }
     }
 }
