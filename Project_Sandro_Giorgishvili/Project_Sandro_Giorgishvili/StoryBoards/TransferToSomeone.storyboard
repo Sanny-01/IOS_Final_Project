@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,11 +22,11 @@
                                         <rect key="frame" x="20" y="25" width="384" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="linkColor"/>
+                                <color key="backgroundColor" red="0.094117647060000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="YZc-ET-UWA"/>
                                 </constraints>
@@ -41,7 +40,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtV-0T-lDd">
                                                 <rect key="frame" x="10" y="10" width="35.5" height="23.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gB1-G5-335">
@@ -49,6 +48,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="7tg-PE-9Tf"/>
                                                 </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -59,11 +59,12 @@
                                                     <constraint firstAttribute="width" constant="70" id="bGY-Jf-9m5"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fph-NQ-dPc">
                                                 <rect key="frame" x="384" y="32" width="25" height="24.5"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="2hd-OR-ewe"/>
                                                 </constraints>
@@ -77,9 +78,9 @@
                                             <constraint firstItem="IWW-zJ-srX" firstAttribute="centerY" secondItem="yAr-5N-EQc" secondAttribute="centerY" id="FaD-ba-nCB"/>
                                             <constraint firstAttribute="bottom" secondItem="IWW-zJ-srX" secondAttribute="bottom" constant="32" id="IId-Np-cCe"/>
                                             <constraint firstAttribute="trailing" secondItem="fph-NQ-dPc" secondAttribute="trailing" constant="5" id="UMA-TU-5U2"/>
-                                            <constraint firstItem="fph-NQ-dPc" firstAttribute="top" secondItem="yAr-5N-EQc" secondAttribute="top" constant="32" id="atl-yh-Pgs"/>
-                                            <constraint firstAttribute="bottom" secondItem="fph-NQ-dPc" secondAttribute="bottom" constant="32" id="cEY-9N-MQQ"/>
+                                            <constraint firstItem="fph-NQ-dPc" firstAttribute="centerY" secondItem="yAr-5N-EQc" secondAttribute="centerY" id="XiM-u6-AgH"/>
                                             <constraint firstAttribute="bottom" secondItem="gB1-G5-335" secondAttribute="bottom" constant="15" id="fcj-uB-DVo"/>
+                                            <constraint firstAttribute="trailing" secondItem="fph-NQ-dPc" secondAttribute="trailing" constant="5" id="fkT-3D-a39"/>
                                             <constraint firstItem="fph-NQ-dPc" firstAttribute="leading" secondItem="IWW-zJ-srX" secondAttribute="trailing" constant="10" id="mea-61-7rI"/>
                                             <constraint firstItem="gB1-G5-335" firstAttribute="leading" secondItem="yAr-5N-EQc" secondAttribute="leading" constant="10" id="pjM-NQ-B4I"/>
                                             <constraint firstItem="IWW-zJ-srX" firstAttribute="height" secondItem="fph-NQ-dPc" secondAttribute="height" id="rMI-cr-SDX"/>
@@ -92,10 +93,11 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.down.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lAf-X5-dYb">
                                                 <rect key="frame" x="182" y="-9" width="20" height="19"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.094117647060000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="linkColor"/>
+                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="4pQ-ew-Wtw"/>
                                             <constraint firstItem="lAf-X5-dYb" firstAttribute="centerX" secondItem="K89-d3-SQA" secondAttribute="centerX" id="Vjb-oQ-uBi"/>
@@ -108,11 +110,12 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQH-h9-Fr4">
                                                 <rect key="frame" x="10" y="16" width="16.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Receiver's IBAN" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qaq-1B-raE">
                                                 <rect key="frame" x="10" y="39" width="284" height="35"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -121,6 +124,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="75" id="beo-qv-iZd"/>
                                                 </constraints>
+                                                <color key="tintColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Check"/>
                                                 <connections>
@@ -146,7 +150,7 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="g2u-ly-WWF">
                                                 <rect key="frame" x="20" y="17" width="60" height="54"/>
-                                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="55" id="8Xg-5N-ngh"/>
                                                     <constraint firstAttribute="width" constant="60" id="ijH-wf-F2o"/>
@@ -155,7 +159,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I5T-8x-Wf0">
                                                 <rect key="frame" x="120" y="33.5" width="254" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -189,7 +193,7 @@
                                     <constraint firstItem="HMC-uX-Igm" firstAttribute="top" secondItem="K89-d3-SQA" secondAttribute="bottom" id="yRa-WY-bas"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Xp-WR-EQu">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Xp-WR-EQu" userLabel="Amount View">
                                 <rect key="frame" x="0.0" y="396" width="414" height="70"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KzI-Q6-lUq">
@@ -197,11 +201,12 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="StU-mg-7W3"/>
                                         </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.094117647060000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="KzI-Q6-lUq" firstAttribute="leading" secondItem="6Xp-WR-EQu" secondAttribute="leading" constant="20" id="5q1-hZ-OWl"/>
                                     <constraint firstAttribute="height" constant="70" id="Nck-Sj-rDw"/>
@@ -211,10 +216,11 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZY-7r-hxr">
                                 <rect key="frame" x="30" y="787" width="354" height="45"/>
-                                <color key="backgroundColor" red="0.086274509799999996" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.72549019609999998" green="0.25490196079999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="VAg-nM-VAi"/>
                                 </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Transfer"/>
                                 <connections>
@@ -223,7 +229,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zfW-bJ-6oO"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.094117647060000004" green="0.098039215690000001" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="sZY-7r-hxr" firstAttribute="leading" secondItem="zfW-bJ-6oO" secondAttribute="leading" constant="30" id="4GQ-Ar-6rA"/>
                             <constraint firstItem="GRf-Be-mWW" firstAttribute="leading" secondItem="zfW-bJ-6oO" secondAttribute="leading" id="9AA-rU-S4K"/>
@@ -246,6 +252,7 @@
                         <outlet property="receiversIbanTextField" destination="qaq-1B-raE" id="mRb-9N-FSW"/>
                         <outlet property="receiversUsernameLabel" destination="I5T-8x-Wf0" id="H5h-Om-Xkz"/>
                         <outlet property="transferAmountTextField" destination="KzI-Q6-lUq" id="jHi-fz-vqZ"/>
+                        <outlet property="transferButton" destination="sZY-7r-hxr" id="Id8-Qg-TOV"/>
                         <outlet property="transferFromTextField" destination="gB1-G5-335" id="c7h-TP-Bb4"/>
                     </connections>
                 </viewController>
@@ -257,11 +264,5 @@
     <resources>
         <image name="arrow.down.circle" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
